@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Neural Network Training concept page with cross-course perspectives and evidence boundaries.">
+    <meta name="theme-color" content="#f7f3f0">
+    <title>Neural Network Training · AI Knowledge System</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main-content">跳到主要內容</a>
+    <header class="site-header">
+      <nav class="site-nav page-frame" aria-label="主要導覽">
+        <a class="site-identity" href="../index.html" aria-label="AI Knowledge System 首頁">
+          <span class="merge-mark" aria-hidden="true"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span>
+          <span>AI Knowledge System</span>
+        </a>
+        <div class="site-nav__links"><a href="../index.html">首頁</a><a aria-current="page" href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <div class="breadcrumb page-frame" aria-label="Breadcrumb"><a href="../concepts.html">Concepts</a><span aria-hidden="true">/</span><span aria-current="page">Neural Network Training</span></div>
+
+      <header class="concept-masthead page-frame">
+        <div class="concept-masthead__title">
+          <h1>Neural Network Training</h1>
+          <p class="concept-definition">Neural Network Training is the repeated process of adjusting learnable parameters so that a neural network’s output moves closer to its training target.</p>
+        </div>
+        <dl class="concept-masthead__meta">
+          <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --><dd class="mastery-note"><small>來自目前系統記錄，尚無獨立驗證日期。</small></dd></div>
+          <div><dt>Course sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
+          <div><dt>Relationship role</dt><dd><span class="relationship-label">theory ↔ practice</span></dd></div>
+          <div><dt>Knowledge layer</dt><dd>Prototype presentation derived from one canonical node</dd></div>
+        </dl>
+      </header>
+
+      <section class="detail-split section-field" aria-label="Why it matters and prerequisites">
+        <div class="page-frame detail-split__inner">
+          <div><h2>Why it matters</h2><p>Training allows a model to change from its initialized behavior by using data, predictions, loss, gradients, and parameter updates. The notes also distinguish training from validation and testing: only training data updates parameters; validation observes training; test data is reserved for final evaluation.</p></div>
+          <div><h2>Prerequisites</h2><ul class="relation-list"><li><span class="relationship-label">prerequisite</span><a href="../concepts.html#neural-network">Neural Network</a></li><li><span class="relationship-label">prerequisite</span><span>Weight and Bias</span></li><li><span class="relationship-label">prerequisite</span><span>Loss Function</span></li><li><span class="relationship-label">prerequisite</span><span>differentiation, partial derivatives, and chain rule</span></li></ul></div>
+        </div>
+      </section>
+
+      <section class="core-idea page-frame" aria-labelledby="core-title">
+        <div class="detail-heading"><h2 id="core-title">Core idea</h2><p>訓練是一個反覆的因果鏈，而不是單一 API 呼叫。</p></div>
+        <ol class="process-chain" aria-label="Neural network training cycle"><li>data / batch</li><li>forward computation</li><li>prediction</li><li>loss</li><li>backpropagation computes gradients</li><li>optimizer updates weights and biases</li><li>repeat</li></ol>
+        <p class="core-note">All training samples being used once completes one epoch. A validation set can be evaluated after an epoch without backpropagation or parameter updates.</p>
+      </section>
+
+      <section class="perspective-section section-field section-field--dark" aria-labelledby="perspective-title">
+        <div class="page-frame">
+          <div class="detail-heading detail-heading--inverse"><h2 id="perspective-title">Cross-course perspectives</h2><p>兩個來源說明同一個 parameter-learning process，但切入點不同。</p></div>
+          <figure class="perspective-merge" aria-labelledby="perspective-caption">
+            <div class="perspective-source"><span class="component-label">TAICA 生成式 AI</span><h3>Conceptual training mechanism</h3><ul><li>prediction → loss → gradient → parameter update</li><li>Backpropagation computes gradients; gradient descent updates parameters.</li><li>Week 4 applies this to embeddings, Q/K/V, and other language-model parameters.</li></ul></div>
+            <div class="perspective-junction"><span class="relationship-label">theory ↔ practice</span><strong>Neural Network Training</strong><span>one canonical concept</span></div>
+            <div class="perspective-source perspective-source--blush"><span class="component-label">人工智慧程式設計</span><h3>Keras and evaluation workflow</h3><ul><li><code>compile()</code>, <code>fit()</code>, <code>predict()</code>, and <code>evaluate()</code></li><li><code>batch_size</code>, epochs, training, validation, and test roles</li><li>California Housing, mushroom classification, and MNIST examples</li></ul></div>
+            <figcaption id="perspective-caption">TAICA supplies the conceptual causal loop; AI Programming maps that loop to Keras operations, dataset roles, and implementation examples. They are not separate course-specific concepts.</figcaption>
+          </figure>
+          <div class="source-comparison" role="group" aria-label="Source perspective comparison"><div><strong>TAICA</strong><span>Conceptual training mechanism and later language-model parameter learning</span></div><div><strong>AI Programming</strong><span>Implementation, Keras controls, validation, and evaluation</span></div></div>
+        </div>
+      </section>
+
+      <section class="mental-model page-frame" aria-labelledby="position-title">
+        <div class="detail-heading"><h2 id="position-title">Where this concept sits</h2><p>先備概念、核心流程與後續應用不必強迫對稱。</p></div>
+        <div class="mental-model__path"><div><span>Prerequisites</span><a href="../concepts.html#neural-network">Neural Network</a><span>Loss Function / Gradient</span></div><strong>Neural Network Training</strong><div><span>Applications</span><a href="../concepts.html#embedding">Embedding parameter learning</a><a href="../concepts.html#transformer">Transformer parameter learning</a></div></div>
+      </section>
+
+      <section class="detail-register section-field" aria-label="Relationships and examples">
+        <div class="page-frame detail-register__inner">
+          <div><h2>Concept relationships</h2><ul class="relation-list"><li><span class="relationship-label">prerequisite</span><a href="../concepts.html#neural-network">Neural Network</a></li><li><span class="relationship-label">part-of</span><a href="../concepts.html#backpropagation">Backpropagation</a>, Cross Entropy, Forward Propagation, Gradient, Optimizer, Learning Rate, Epoch and Batch</li><li><span class="relationship-label">cause/effect</span><span>prediction error → loss → gradients → parameter update</span></li><li><span class="relationship-label">application</span><a href="../concepts.html#transformer">Transformer parameter learning</a></li><li><span class="relationship-label">theory ↔ practice</span><span>TAICA causal loop ↔ AI Programming Keras workflow</span></li></ul></div>
+          <div><h2>Applications / examples</h2><ul class="plain-list"><li>California Housing regression: compare <code>loss</code> and <code>val_loss</code>.</li><li>Mushroom binary classification: sigmoid with <code>binary_crossentropy</code>.</li><li>MNIST multi-class classification: <a href="softmax.html">Softmax</a> with TensorBoard hyperparameter comparison.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="learning-evidence page-frame" aria-labelledby="evidence-title">
+        <div><h2 id="evidence-title">Recorded learning evidence</h2><p class="learning-evidence__quote">Neural Network Training 是透過反覆調整參數，讓神經網路的輸出逐漸接近正確結果的過程。</p></div>
+        <p class="learning-evidence__limit">The canonical file also records first-person-labeled use of Keras <code>compile()</code>, <code>fit()</code>, <code>predict()</code>, and <code>evaluate()</code>. Authorship and confirmation metadata for these statements is not stored.</p>
+      </section>
+
+      <section class="mastery-section section-field section-field--dark" aria-labelledby="mastery-title"><div class="page-frame mastery-section__inner"><h2 id="mastery-title">Recorded mastery</h2><div><p class="mastery-section__state"><span aria-hidden="true">🟨</span> 可以解釋</p><!-- taste-skill-ignore: project mastery state --><p>This status exists in the current knowledge system, but no formal confirmation date or validation record is stored. It is not independently verified mastery.</p><p>Open questions remain about full multilayer backpropagation, optimizer differences, stopping conditions, and interactions among batch size and epochs.</p></div></div></section>
+
+      <section class="evidence-ledger page-frame" aria-label="Sources and evidence limitations">
+        <div><h2>Sources</h2><h3>Canonical concept file</h3><p><code>Neural Network Training.md</code></p><h3>Course/source material</h3><ul class="plain-list"><li>人工智慧程式設計 course index</li><li>人工智慧程式設計: <code>2026-09-29 手寫筆記整理</code>, “Model Training”</li><li>人工智慧程式設計: <code>多層感知器的學習、訓練與驗證流程</code></li><li>TAICA 生成式 AI Week 2: <code>神經網路</code></li><li>TAICA 生成式 AI Week 4: <code>LLM and Transformer</code></li></ul></div>
+        <div><h2>Evidence limitations</h2><ul class="plain-list"><li>Recorded mastery has no formal confirmation history.</li><li>First-person-labeled explanation and usage statements have no authorship or approval metadata.</li><li>The handwritten AI Programming note is source-organized, does not prove understanding, and warns that some OCR remains uncertain.</li><li>人工智慧方法與工具 is an index reference only and is not presented as a substantive third perspective.</li><li>Some relationship types are explicit presentation-layer formalizations of causal prose; no separately validated graph-edge record exists.</li></ul></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="page-frame site-footer__inner"><div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div><nav class="site-footer__nav" aria-label="頁尾導覽"><a href="../index.html">首頁</a><a href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></nav><p>Presentation layer · Canonical source remains read-only.</p></div></footer>
+  </body>
+</html>

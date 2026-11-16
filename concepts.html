@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AI Knowledge System 的 concept-oriented 知識索引。">
+    <meta name="theme-color" content="#f7f3f0">
+    <title>Concept Index · AI Knowledge System</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main-content">跳到主要內容</a>
+
+    <header class="site-header">
+      <nav class="site-nav page-frame" aria-label="主要導覽">
+        <a class="site-identity" href="index.html" aria-label="AI Knowledge System 首頁">
+          <span class="merge-mark" aria-hidden="true">
+            <span class="merge-mark__source merge-mark__source--top"></span>
+            <span class="merge-mark__source merge-mark__source--bottom"></span>
+            <span class="merge-mark__junction"></span>
+            <span class="merge-mark__node"></span>
+          </span>
+          <span>AI Knowledge System</span>
+        </a>
+        <div class="site-nav__links">
+          <a href="index.html">首頁</a>
+          <a aria-current="page" href="concepts.html">Concepts</a>
+          <a href="index.html#agents">About / AGENTS</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <header class="index-masthead page-frame">
+        <div>
+          <h1>Concept Index</h1>
+          <p class="index-masthead__lead">一個按概念角色組織的知識入口，而不是課程筆記目錄。</p>
+        </div>
+        <aside class="index-masthead__note">
+          <strong>10 canonical concepts</strong>
+          <p>3 個 full prototype pages，7 個 supporting graph nodes。課程名稱只表示 provenance。</p>
+        </aside>
+      </header>
+
+      <section class="concept-index page-frame" aria-labelledby="learning-training-title">
+        <div class="concept-group">
+          <header class="concept-group__heading">
+            <h2 id="learning-training-title">Learning &amp; Training</h2>
+            <p>從 parameterized architecture，到 loss、gradient 與參數更新的學習流程。</p>
+          </header>
+
+          <article id="neural-network" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main">
+              <div class="concept-index-item__title">
+                <h3>Neural Network</h3>
+                <span class="availability-label">Supporting graph node</span>
+              </div>
+              <p>神經網路是一個有參數的「函數學習機」，根據數字化資料與學到的參數產生輸出。</p>
+            </div>
+            <dl class="concept-index-item__meta">
+              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
+              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span><span class="source-badge">人工智慧方法與工具</span></dd></div>
+              <div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Neural Network Training</dd></div>
+            </dl>
+          </article>
+
+          <article id="neural-network-training" class="concept-index-item concept-index-item--full">
+            <div class="concept-index-item__main">
+              <div class="concept-index-item__title">
+                <h3><a href="concepts/neural-network-training.html">Neural Network Training</a></h3>
+                <span class="availability-label">Full prototype page</span>
+              </div>
+              <p>透過反覆調整參數，讓神經網路的輸出逐漸接近正確結果的過程。</p>
+              <a class="index-entry-link" href="concepts/neural-network-training.html">View concept →</a>
+            </div>
+            <dl class="concept-index-item__meta">
+              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
+              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
+              <div><dt>Key relation</dt><dd><span class="relationship-label">theory ↔ practice</span> conceptual loop ↔ Keras workflow</dd></div>
+            </dl>
+          </article>
+
+          <article id="backpropagation" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main">
+              <div class="concept-index-item__title"><h3>Backpropagation</h3><span class="availability-label">Supporting graph node</span></div>
+              <p>利用 chain rule，從 output 端往前有效率地計算 loss 對各層 weights／bias 的 gradient。</p>
+            </div>
+            <dl class="concept-index-item__meta">
+              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟧</span> 聽過但模糊</dd><!-- taste-skill-ignore: project mastery state --></div>
+              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
+              <div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Neural Network Training</dd></div>
+            </dl>
+          </article>
+
+          <article id="cross-entropy" class="concept-index-item concept-index-item--full">
+            <div class="concept-index-item__main">
+              <div class="concept-index-item__title"><h3><a href="concepts/cross-entropy.html">Cross Entropy</a></h3><span class="availability-label">Full prototype page</span></div>
+              <p>衡量用模型 distribution Q 描述真實 distribution P 的代價；正確類別被分配低機率時，loss 會很大。</p>
+              <a class="index-entry-link" href="concepts/cross-entropy.html">View concept →</a>
+            </div>
+            <dl class="concept-index-item__meta">
+              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
+              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
+              <div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Neural Network Training</dd></div>
+            </dl>
+          </article>
+
+          <article id="softmax" class="concept-index-item concept-index-item--full">
+            <div class="concept-index-item__main">
+              <div class="concept-index-item__title"><h3><a href="concepts/softmax.html">Softmax</a></h3><span class="availability-label">Full prototype page</span></div>
+              <p>在 output layer 將多個輸出分數轉換成總和為 1 的相對分布。</p>
+              <a class="index-entry-link" href="concepts/softmax.html">View concept →</a>
+            </div>
+            <dl class="concept-index-item__meta">
+              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
+              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
+              <div><dt>Key relation</dt><dd><span class="relationship-label">application</span> → classification / next-token generation</dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="concept-group">
+          <header class="concept-group__heading">
+            <h2>Representation &amp; Architecture</h2>
+            <p>從文字的離散 token，到可學習表示、contextual representation 與 Transformer 架構。</p>
+          </header>
+
+          <article id="tokenization" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Tokenization</h3><span class="availability-label">Supporting graph node</span></div><p>將原始文字切成模型 vocabulary 可表示的 token，讓文字能轉成數字並送入 Embedding layer。</p></div>
+            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟧</span> 聽過但模糊</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Embedding</dd></div></dl>
+          </article>
+
+          <article id="embedding" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Embedding</h3><span class="availability-label">Supporting graph node</span></div><p>Token 的可學習 feature vector；以稠密向量表示 token 的特徵與關係。</p></div>
+            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Self-Attention</dd></div></dl>
+          </article>
+
+          <article id="self-attention" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Self-Attention</h3><span class="availability-label">Supporting graph node</span></div><p>讓序列中的每個 token 依與其他 tokens 的關聯程度整合資訊，將初始 embedding 轉成 contextual representation。</p></div>
+            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Transformer</dd></div></dl>
+          </article>
+
+          <article id="transformer" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Transformer</h3><span class="availability-label">Supporting graph node</span></div><p>以 Self-Attention 為核心的序列模型，讓每個 token 參考序列中的其他 token，逐層形成融合上下文的 representation。</p></div>
+            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Large Language Model</dd></div></dl>
+          </article>
+        </div>
+
+        <div class="concept-group">
+          <header class="concept-group__heading"><h2>Language Models</h2><p>以 next-token prediction 為基本任務的語言模型層次。</p></header>
+          <article id="large-language-model" class="concept-index-item concept-index-item--supporting" tabindex="-1">
+            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Large Language Model</h3><span class="availability-label">Supporting graph node</span></div><p>以大量文字與大規模參數訓練的 Language Model；基本任務仍是 next-token prediction。</p></div>
+            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd>Transformer → <span class="relationship-label">prerequisite</span></dd></div></dl>
+          </article>
+        </div>
+      </section>
+
+      <aside class="index-evidence section-field section-field--dark">
+        <div class="page-frame index-evidence__inner">
+          <h2>Evidence boundary</h2>
+          <p>Recorded mastery 只是目前 knowledge system 中的記錄，沒有 formal confirmation date 或 validation record。技術鏈目前主要來自 TAICA 生成式 AI，不應被描述為跨課程證據。</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-frame site-footer__inner">
+        <div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div>
+        <nav class="site-footer__nav" aria-label="頁尾導覽"><a href="index.html">首頁</a><a href="concepts.html">Concepts</a><a href="index.html#agents">About / AGENTS</a></nav>
+        <p>Concept-oriented index · Courses remain provenance.</p>
+      </div>
+    </footer>
+  </body>
+</html>
