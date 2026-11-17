@@ -1,0 +1,24 @@
+{
+  "scanned": "2026-11-17",
+  "findings": {
+    "fonts": "General Sans 400–700 from Fontshare with multilingual system fallbacks",
+    "palette": "Existing aubergine, blush, warm paper, and neutral surface tokens in assets/css/style.css",
+    "motion": "Small CSS state transitions only; no motion library",
+    "spacing": "Existing custom scale, normalized into Hallmark spacing tokens",
+    "framework": "Plain semantic HTML, shared CSS, and progressive vanilla JavaScript"
+  },
+  "preserve": [
+    "General Sans",
+    "aubergine and blush identity",
+    "merge mark",
+    "editorial research-tool character",
+    "existing routes and evidence model"
+  ],
+  "introduce": [
+    "Knowledge Explorer app screen",
+    "accessible recorded-mastery markers",
+    "progressive-enhancement search and filters",
+    "selected concept workspace",
+    "responsive list-to-sheet mobile flow"
+  ]
+}

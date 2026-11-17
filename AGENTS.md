@@ -149,6 +149,34 @@ Supported relationship types:
 
 Prefer the most precise supported relationship over a vague `related to` edge. AI may propose relationships, but permanent new relationships require user confirmation. Never invent connections to make the graph appear denser.
 
+## Visual Explanation and Concept Diagrams
+
+Use visual explanations when they materially improve understanding. A diagram should answer a specific knowledge question, such as:
+
+- where a concept sits in the mental model;
+- which concepts are prerequisites;
+- which applications or downstream concepts follow;
+- how a mechanism or process works;
+- what cause/effect structure is supported;
+- how theory maps to practice;
+- what different courses contribute to one canonical concept;
+- how two supported concepts or uses compare.
+
+Do not create diagrams merely for decoration, and avoid generic “everything is related” spider graphs. Every visual relationship must be supported by the existing knowledge system and use the approved relationship vocabulary:
+
+- prerequisite
+- part-of
+- cause/effect
+- evolution
+- application
+- contrast
+- theory ↔ practice
+- cross-domain analogy
+
+Do not invent relationships to complete a diagram. Important concept pages should consider a small Local Mental Model Map. Concepts with a meaningful mechanism, process, or comparison should use a concept-specific visualization when it improves comprehension.
+
+Interaction is encouraged only when it improves learning or exploration. Visualizations must remain accessible, mobile-friendly, understandable without relying only on color, and useful by click, tap, and keyboard. Visualizations represent existing knowledge; they are not new knowledge sources.
+
 ## Source and provenance rules
 
 Keep these provenance categories distinct:
@@ -252,3 +280,7 @@ Preserve these known limitations in future presentation work:
 - the Tokenization-to-LLM chain is mostly single-course.
 
 Do not conceal these limitations or convert uncertainty into certainty.
+
+## Definition of Done
+
+If a concept contains a mechanism, relationship structure, or process that is difficult to understand from prose alone, an appropriate visual explanation has been considered and included when it materially improves comprehension. This does not require every concept to have a diagram.

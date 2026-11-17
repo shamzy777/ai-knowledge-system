@@ -3,14 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AI Knowledge System 的 concept-oriented 知識索引。">
+    <meta
+      name="description"
+      content="Browse canonical AI concepts by cluster, source contribution, and supported relationship."
+    >
     <meta name="theme-color" content="#f7f3f0">
-    <title>Concept Index · AI Knowledge System</title>
+    <link rel="icon" href="data:,">
+    <title>Knowledge Explorer · AI Knowledge System</title>
     <link rel="preconnect" href="https://api.fontshare.com">
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap"
+      rel="stylesheet"
+    >
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/explorer.js" defer></script>
   </head>
-  <body id="top">
+  <body id="top" class="explorer-page">
     <a class="skip-link" href="#main-content">跳到主要內容</a>
 
     <header class="site-header">
@@ -25,151 +33,387 @@
           <span>AI Knowledge System</span>
         </a>
         <div class="site-nav__links">
-          <a href="index.html">首頁</a>
-          <a aria-current="page" href="concepts.html">Concepts</a>
-          <a href="index.html#agents">About / AGENTS</a>
+          <a href="index.html">Home</a>
+          <a aria-current="page" href="concepts.html" aria-label="Knowledge Explorer">
+            <span class="nav-label-long">Knowledge Explorer</span>
+            <span class="nav-label-short" aria-hidden="true">Explorer</span>
+          </a>
+          <a href="index.html#agents">System rules</a>
         </div>
       </nav>
     </header>
 
-    <main id="main-content">
-      <header class="index-masthead page-frame">
+    <main id="main-content" class="explorer-main page-frame">
+      <header class="explorer-intro">
         <div>
-          <h1>Concept Index</h1>
-          <p class="index-masthead__lead">一個按概念角色組織的知識入口，而不是課程筆記目錄。</p>
+          <h1>Knowledge Explorer</h1>
+          <p>Move through one concept network while course contributions remain visible as evidence.</p>
         </div>
-        <aside class="index-masthead__note">
-          <strong>10 canonical concepts</strong>
-          <p>3 個 full prototype pages，7 個 supporting graph nodes。課程名稱只表示 provenance。</p>
-        </aside>
+        <p class="explorer-scope">
+          This Week 9 view covers selected training, representation, and language-model concepts. It is not the whole parent vault.
+        </p>
       </header>
 
-      <section class="concept-index page-frame" aria-labelledby="learning-training-title">
-        <div class="concept-group">
-          <header class="concept-group__heading">
-            <h2 id="learning-training-title">Learning &amp; Training</h2>
-            <p>從 parameterized architecture，到 loss、gradient 與參數更新的學習流程。</p>
-          </header>
+      <form class="explorer-tools" role="search" aria-label="Search and filter concepts" data-explorer-tools>
+        <div class="search-field">
+          <label for="concept-search">Search concepts, definitions, sources, or relationships</label>
+          <div class="search-field__control">
+            <input
+              id="concept-search"
+              name="q"
+              type="search"
+              autocomplete="off"
+              placeholder="Try “sampling”, “TAICA”, or “prerequisite”"
+            >
+            <button type="button" class="quiet-action" data-clear-search>Clear</button>
+          </div>
+        </div>
 
-          <article id="neural-network" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main">
-              <div class="concept-index-item__title">
-                <h3>Neural Network</h3>
-                <span class="availability-label">Supporting graph node</span>
+        <fieldset class="explorer-filters">
+          <legend>Filter this prototype cluster</legend>
+          <label>
+            <span>Conceptual cluster</span>
+            <select name="cluster" data-filter-cluster>
+              <option value="all">All clusters</option>
+              <option value="training">Training</option>
+              <option value="representation">Representation</option>
+              <option value="language">Language</option>
+            </select>
+          </label>
+          <label>
+            <span>Source contribution</span>
+            <select name="source" data-filter-source>
+              <option value="all">All sources</option>
+              <option value="ai-programming">人工智慧程式設計</option>
+              <option value="taica">TAICA 生成式 AI</option>
+            </select>
+          </label>
+          <label class="check-control">
+            <input type="checkbox" name="full" value="tier-1" data-filter-full>
+            <span>Full experiences only</span>
+          </label>
+        </fieldset>
+      </form>
+
+      <div class="explorer-status" aria-live="polite">
+        <span data-result-count>21 concepts</span>
+        <button type="button" class="text-action" data-clear-filters>Clear filters</button>
+      </div>
+
+      <div class="explorer-layout">
+        <nav id="concept-results" class="concept-register" aria-label="Concept results">
+          <section class="concept-register__group" data-concept-group>
+            <h2>Training</h2>
+            <div class="concept-register__list">
+              <a id="neural-network" href="#concept-neural-network" data-concept-link="neural-network" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2"><span>Neural Network</span><small>Rich preview</small></a>
+              <a id="neural-network-training" href="#concept-neural-network-training" data-concept-link="neural-network-training" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-1"><span>Neural Network Training</span><small>Full experience</small></a>
+              <a href="#concept-loss-function" data-concept-link="loss-function" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2"><span>Loss Function</span><small>Rich preview</small></a>
+              <a id="cross-entropy" href="#concept-cross-entropy" data-concept-link="cross-entropy" data-cluster="training language" data-sources="ai-programming taica" data-tier="tier-1"><span>Cross Entropy</span><small>Full experience</small></a>
+              <a id="backpropagation" href="#concept-backpropagation" data-concept-link="backpropagation" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2"><span>Backpropagation</span><small>Rich preview</small></a>
+              <a href="#concept-activation-function" data-concept-link="activation-function" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2"><span>Activation Function</span><small>Rich preview</small></a>
+              <a href="#concept-weight-and-bias" data-concept-link="weight-and-bias" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-3"><span>Weight and Bias</span><small>Graph node</small></a>
+              <a href="#concept-gradient" data-concept-link="gradient" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-3"><span>Gradient</span><small>Graph node</small></a>
+              <a href="#concept-optimizer" data-concept-link="optimizer" data-cluster="training" data-sources="ai-programming" data-tier="tier-3"><span>Optimizer</span><small>Graph node</small></a>
+              <a href="#concept-epoch-and-batch" data-concept-link="epoch-and-batch" data-cluster="training" data-sources="ai-programming" data-tier="tier-3"><span>Epoch and Batch</span><small>Graph node</small></a>
+              <a href="#concept-classification" data-concept-link="classification" data-cluster="training" data-sources="ai-programming" data-tier="tier-3"><span>Classification</span><small>Graph node</small></a>
+            </div>
+          </section>
+
+          <section class="concept-register__group" data-concept-group>
+            <h2>Representation</h2>
+            <div class="concept-register__list">
+              <a id="tokenization" href="#concept-tokenization" data-concept-link="tokenization" data-cluster="representation language" data-sources="taica" data-tier="tier-3"><span>Tokenization</span><small>Graph node</small></a>
+              <a id="embedding" href="#concept-embedding" data-concept-link="embedding" data-cluster="representation language" data-sources="taica" data-tier="tier-2"><span>Embedding</span><small>Rich preview</small></a>
+              <a href="#concept-query-key-and-value" data-concept-link="query-key-and-value" data-cluster="representation" data-sources="taica" data-tier="tier-3"><span>Query, Key, and Value</span><small>Graph node</small></a>
+              <a id="self-attention" href="#concept-self-attention" data-concept-link="self-attention" data-cluster="representation language" data-sources="taica" data-tier="tier-2"><span>Self-Attention</span><small>Rich preview</small></a>
+              <a id="transformer" href="#concept-transformer" data-concept-link="transformer" data-cluster="representation language" data-sources="taica" data-tier="tier-2"><span>Transformer</span><small>Rich preview</small></a>
+            </div>
+          </section>
+
+          <section class="concept-register__group" data-concept-group>
+            <h2>Language</h2>
+            <div class="concept-register__list">
+              <a href="#concept-distribution" data-concept-link="distribution" data-cluster="language" data-sources="taica" data-tier="tier-2"><span>Distribution</span><small>Rich preview</small></a>
+              <a id="softmax" href="#concept-softmax" data-concept-link="softmax" data-cluster="training language" data-sources="ai-programming taica" data-tier="tier-1" aria-current="true"><span>Softmax</span><small>Full experience</small></a>
+              <a href="#concept-sampling" data-concept-link="sampling" data-cluster="language" data-sources="taica" data-tier="tier-3"><span>Sampling</span><small>Graph node</small></a>
+              <a href="#concept-language-model" data-concept-link="language-model" data-cluster="language" data-sources="taica" data-tier="tier-2"><span>Language Model</span><small>Rich preview</small></a>
+              <a id="large-language-model" href="#concept-large-language-model" data-concept-link="large-language-model" data-cluster="language" data-sources="taica" data-tier="tier-2"><span>Large Language Model</span><small>Rich preview</small></a>
+            </div>
+          </section>
+
+          <p class="empty-results" data-empty-results hidden>
+            No concepts match these filters. Clear the filters to restore the register.
+          </p>
+        </nav>
+
+        <section class="explorer-workspace" aria-label="Selected concept">
+          <noscript>
+            <p class="noscript-note">JavaScript is off. Every concept sheet remains available below, and the register links jump to each one.</p>
+          </noscript>
+
+          <template id="path-controls-template">
+            <div class="path-controls" role="group" aria-label="Highlight relationship paths">
+              <button type="button" data-path-filter="all">All relationships</button>
+              <button type="button" data-path-filter="prerequisite">Prerequisites</button>
+              <button type="button" data-path-filter="downstream">Downstream</button>
+            </div>
+          </template>
+
+          <template id="perspective-controls-template">
+            <div class="perspective-controls" role="group" aria-label="Course perspective">
+              <button type="button" data-perspective="integrated">Integrated</button>
+              <button type="button" data-perspective="ai-programming">AI Programming</button>
+              <button type="button" data-perspective="taica">TAICA Generative AI</button>
+            </div>
+          </template>
+
+          <article id="concept-softmax" class="explorer-sheet" data-concept-sheet="softmax" data-cluster="training language" data-sources="ai-programming taica" data-tier="tier-1">
+            <header class="explorer-sheet__header">
+              <div>
+                <h2>Softmax</h2>
+                <p class="concept-definition">Converts multiple scores into a relative distribution whose values sum to one.</p>
               </div>
-              <p>神經網路是一個有參數的「函數學習機」，根據數字化資料與學到的參數產生輸出。</p>
-            </div>
-            <dl class="concept-index-item__meta">
-              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
-              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span><span class="source-badge">人工智慧方法與工具</span></dd></div>
-              <div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Neural Network Training</dd></div>
-            </dl>
-          </article>
-
-          <article id="neural-network-training" class="concept-index-item concept-index-item--full">
-            <div class="concept-index-item__main">
-              <div class="concept-index-item__title">
-                <h3><a href="concepts/neural-network-training.html">Neural Network Training</a></h3>
-                <span class="availability-label">Full prototype page</span>
+              <div class="sheet-status">
+                <span class="depth-label">Full concept experience</span>
+                <p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p>
+                <small>Not independently verified</small>
               </div>
-              <p>透過反覆調整參數，讓神經網路的輸出逐漸接近正確結果的過程。</p>
-              <a class="index-entry-link" href="concepts/neural-network-training.html">View concept →</a>
-            </div>
-            <dl class="concept-index-item__meta">
-              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
-              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
-              <div><dt>Key relation</dt><dd><span class="relationship-label">theory ↔ practice</span> conceptual loop ↔ Keras workflow</dd></div>
+            </header>
+
+            <dl class="sheet-at-a-glance">
+              <div><dt>Role</dt><dd>Turns competing scores into a distribution used by classification or generation.</dd></div>
+              <div><dt>Prerequisites</dt><dd><a href="#concept-activation-function">Activation Function</a>, <a href="#concept-classification">Classification</a></dd></div>
+              <div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div>
             </dl>
+
+            <section class="mechanism-preview" aria-labelledby="softmax-mechanism">
+              <h3 id="softmax-mechanism">Scores become choices</h3>
+              <div class="mechanism-path mechanism-path--fork">
+                <span>candidate scores</span><span class="relationship-label">cause/effect</span><strong>Softmax</strong><span class="relationship-label">produces</span><span>relative distribution</span>
+                <div><span>argmax <b>classification</b></span><span>sampling <b>generation</b></span></div>
+              </div>
+              <p class="recorded-example"><strong>Recorded example</strong> [cat, dog, bird] → [0.66, 0.24, 0.10]. Input score values are not recorded.</p>
+            </section>
+
+            <section class="cross-course-lens" aria-labelledby="softmax-sources">
+              <h3 id="softmax-sources">Course contributions</h3>
+              <div>
+                <p data-perspective-panel="ai-programming"><strong>人工智慧程式設計</strong><span>Classification output, mutually exclusive classes, and sigmoid contrast.</span></p>
+                <span class="relationship-label" data-perspective-panel="integrated">theory ↔ practice</span>
+                <p data-perspective-panel="taica"><strong>TAICA 生成式 AI</strong><span>Probability distribution, argmax or sampling, and next-token generation.</span></p>
+              </div>
+            </section>
+
+            <section class="supported-paths" aria-labelledby="softmax-paths">
+              <h3 id="softmax-paths">Supported paths</h3>
+              <ul>
+                <li><a href="#concept-distribution">Distribution</a><span class="relationship-label">prerequisite</span><strong>Softmax</strong></li>
+                <li><strong>Softmax</strong><span class="relationship-label">application</span><a href="#concept-classification">Classification</a></li>
+                <li><strong>Softmax</strong><span class="relationship-label">application</span><a href="#concept-language-model">Language Model</a></li>
+              </ul>
+            </section>
+
+            <details class="evidence-disclosure">
+              <summary>Sources and evidence limits</summary>
+              <p>Supported by <code>Softmax.md</code>, AI Programming notes, and TAICA Weeks 2 to 4. First-person-labelled explanations have no stored authorship or approval metadata. Sigmoid is a contrast term only because no canonical <code>Sigmoid.md</code> exists.</p>
+            </details>
+
+            <footer class="sheet-actions">
+              <a class="primary-action" href="concepts/softmax.html">Open full concept</a>
+              <div><span>Explore next</span><a href="#concept-distribution">Distribution</a><a href="#concept-sampling">Sampling</a></div>
+              <a class="back-to-results" href="#concept-results">Back to results</a>
+            </footer>
           </article>
 
-          <article id="backpropagation" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main">
-              <div class="concept-index-item__title"><h3>Backpropagation</h3><span class="availability-label">Supporting graph node</span></div>
-              <p>利用 chain rule，從 output 端往前有效率地計算 loss 對各層 weights／bias 的 gradient。</p>
-            </div>
-            <dl class="concept-index-item__meta">
-              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟧</span> 聽過但模糊</dd><!-- taste-skill-ignore: project mastery state --></div>
-              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
-              <div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Neural Network Training</dd></div>
+          <article id="concept-neural-network-training" class="explorer-sheet" data-concept-sheet="neural-network-training" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-1">
+            <header class="explorer-sheet__header">
+              <div><h2>Neural Network Training</h2><p class="concept-definition">Repeatedly adjusts learnable parameters so network outputs move closer to the training target.</p></div>
+              <div class="sheet-status"><span class="depth-label">Full concept experience</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div>
+            </header>
+            <dl class="sheet-at-a-glance">
+              <div><dt>Role</dt><dd>Connects conceptual parameter learning with the recorded Keras workflow.</dd></div>
+              <div><dt>Prerequisites</dt><dd><a href="#concept-neural-network">Neural Network</a>, <a href="#concept-weight-and-bias">Weight and Bias</a>, <a href="#concept-loss-function">Loss Function</a></dd></div>
+              <div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div>
             </dl>
+            <section class="mechanism-preview" aria-labelledby="training-mechanism"><h3 id="training-mechanism">The parameter-learning loop</h3><div class="training-loop"><span>data or batch</span><span>forward computation</span><span>loss</span><span>backpropagation computes gradients</span><span>optimizer updates θ</span><span>next iteration</span></div><p class="recorded-example">Validation follows an epoch without backpropagation or parameter updates. Test or <code>evaluate()</code> is final evaluation, not a training update.</p></section>
+            <section class="cross-course-lens" aria-labelledby="training-sources"><h3 id="training-sources">Course contributions</h3><div><p data-perspective-panel="taica"><strong>TAICA 生成式 AI</strong><span>Prediction, loss, gradient calculation, and parameter-update framing.</span></p><span class="relationship-label" data-perspective-panel="integrated">theory ↔ practice</span><p data-perspective-panel="ai-programming"><strong>人工智慧程式設計</strong><span><code>compile()</code>, <code>fit()</code>, batch size, epochs, validation, and <code>evaluate()</code>.</span></p></div></section>
+            <section class="supported-paths" aria-labelledby="training-paths"><h3 id="training-paths">Supported paths</h3><ul><li><a href="#concept-neural-network">Neural Network</a><span class="relationship-label">prerequisite</span><strong>Neural Network Training</strong></li><li><a href="#concept-backpropagation">Backpropagation</a><span class="relationship-label">part of</span><strong>Neural Network Training</strong></li><li><strong>Neural Network Training</strong><span class="relationship-label">application</span><a href="#concept-transformer">Transformer parameter learning</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and evidence limits</summary><p>Supported by <code>Neural Network Training.md</code>, AI Programming implementation notes, and TAICA Weeks 2 and 4. Full multilayer backpropagation, optimizer differences, stopping criteria, and batch/epoch interaction remain incomplete.</p></details>
+            <footer class="sheet-actions"><a class="primary-action" href="concepts/neural-network-training.html">Open full concept</a><div><span>Explore next</span><a href="#concept-backpropagation">Backpropagation</a><a href="#concept-optimizer">Optimizer</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
 
-          <article id="cross-entropy" class="concept-index-item concept-index-item--full">
-            <div class="concept-index-item__main">
-              <div class="concept-index-item__title"><h3><a href="concepts/cross-entropy.html">Cross Entropy</a></h3><span class="availability-label">Full prototype page</span></div>
-              <p>衡量用模型 distribution Q 描述真實 distribution P 的代價；正確類別被分配低機率時，loss 會很大。</p>
-              <a class="index-entry-link" href="concepts/cross-entropy.html">View concept →</a>
-            </div>
-            <dl class="concept-index-item__meta">
-              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
-              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
-              <div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Neural Network Training</dd></div>
-            </dl>
+          <article id="concept-cross-entropy" class="explorer-sheet" data-concept-sheet="cross-entropy" data-cluster="training language" data-sources="ai-programming taica" data-tier="tier-1">
+            <header class="explorer-sheet__header"><div><h2>Cross Entropy</h2><p class="concept-definition">Measures the cost of using model distribution Q to describe target distribution P.</p></div><div class="sheet-status"><span class="depth-label">Full concept experience</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Turns target/model distribution mismatch into a training loss.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-distribution">Distribution</a>, Information, Entropy, <a href="#concept-softmax">Softmax</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview" aria-labelledby="cross-entropy-mechanism"><h3 id="cross-entropy-mechanism">A target and a model distribution</h3><div class="distribution-compare"><p><span>Target P</span><strong>[1, 0, 0]</strong></p><p><span>Model Q</span><strong>[0.6, 0.3, 0.1]</strong></p><span class="relationship-label">produces</span><strong>Cross Entropy training loss</strong></div><p class="recorded-example">Supported intuition: assigning low probability to the correct target produces a larger loss.</p></section>
+            <section class="cross-course-lens" aria-labelledby="cross-entropy-sources"><h3 id="cross-entropy-sources">Course contributions</h3><div><p data-perspective-panel="ai-programming"><strong>人工智慧程式設計</strong><span>Classification-loss implementation and Keras training workflow.</span></p><span class="relationship-label" data-perspective-panel="integrated">theory ↔ practice</span><p data-perspective-panel="taica"><strong>TAICA 生成式 AI</strong><span>Probability and information framing plus next-token training.</span></p></div></section>
+            <section class="supported-paths" aria-labelledby="cross-entropy-paths"><h3 id="cross-entropy-paths">Supported paths</h3><ul><li><a href="#concept-distribution">Distribution</a><span class="relationship-label">prerequisite</span><strong>Cross Entropy</strong></li><li><strong>Cross Entropy</strong><span class="relationship-label">part of</span><a href="#concept-neural-network-training">Neural Network Training</a></li><li><strong>Cross Entropy</strong><span class="relationship-label">application</span><a href="#concept-language-model">Language Model training</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and evidence limits</summary><p>Supported by <code>Cross Entropy.md</code>, the AI Programming MLP note, and TAICA Weeks 3 and 4. The full derivation, KL relationship, and task-dependent MSE comparison remain unresolved.</p></details>
+            <footer class="sheet-actions"><a class="primary-action" href="concepts/cross-entropy.html">Open full concept</a><div><span>Explore next</span><a href="#concept-loss-function">Loss Function</a><a href="#concept-language-model">Language Model</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
 
-          <article id="softmax" class="concept-index-item concept-index-item--full">
-            <div class="concept-index-item__main">
-              <div class="concept-index-item__title"><h3><a href="concepts/softmax.html">Softmax</a></h3><span class="availability-label">Full prototype page</span></div>
-              <p>在 output layer 將多個輸出分數轉換成總和為 1 的相對分布。</p>
-              <a class="index-entry-link" href="concepts/softmax.html">View concept →</a>
-            </div>
-            <dl class="concept-index-item__meta">
-              <div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div>
-              <div><dt>Sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div>
-              <div><dt>Key relation</dt><dd><span class="relationship-label">application</span> → classification / next-token generation</dd></div>
-            </dl>
-          </article>
-        </div>
-
-        <div class="concept-group">
-          <header class="concept-group__heading">
-            <h2>Representation &amp; Architecture</h2>
-            <p>從文字的離散 token，到可學習表示、contextual representation 與 Transformer 架構。</p>
-          </header>
-
-          <article id="tokenization" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Tokenization</h3><span class="availability-label">Supporting graph node</span></div><p>將原始文字切成模型 vocabulary 可表示的 token，讓文字能轉成數字並送入 Embedding layer。</p></div>
-            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟧</span> 聽過但模糊</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Embedding</dd></div></dl>
+          <article id="concept-neural-network" class="explorer-sheet" data-concept-sheet="neural-network" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Neural Network</h2><p class="concept-definition">A parameterized function built from neurons and layers that turns inputs into learned outputs.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Provides the architecture whose parameters are learned during training.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-weight-and-bias">Weight and Bias</a>, <a href="#concept-activation-function">Activation Function</a>, Hidden Layer</dd></div><div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span><span class="source-badge">AI Methods (index only)</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Architecture to learned function</h3><p>Layers combine learnable parameters and activations; training changes those parameters so the represented function changes.</p></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-weight-and-bias">Weight and Bias</a><span class="relationship-label">part of</span><strong>Neural Network</strong></li><li><strong>Neural Network</strong><span class="relationship-label">prerequisite</span><a href="#concept-neural-network-training">Neural Network Training</a></li><li><strong>Neural Network</strong><span class="relationship-label">prerequisite</span><a href="#concept-transformer">Transformer</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>The canonical file includes MNIST and myna examples and extensive first-person-labelled explanation. CNN, RNN, Transformer internals, universal approximation, and stopping or overfitting remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-neural-network-training">Neural Network Training</a><a href="#concept-activation-function">Activation Function</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
 
-          <article id="embedding" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Embedding</h3><span class="availability-label">Supporting graph node</span></div><p>Token 的可學習 feature vector；以稠密向量表示 token 的特徵與關係。</p></div>
-            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Self-Attention</dd></div></dl>
+          <article id="concept-loss-function" class="explorer-sheet" data-concept-sheet="loss-function" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Loss Function</h2><p class="concept-definition">A scalar measure of mismatch between a prediction and its target.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Provides the differentiable objective that training attempts to reduce.</dd></div><div><dt>Prerequisites</dt><dd>Prediction and target comparison</dd></div><div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span><span class="source-badge">AI Methods (metadata)</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Mismatch becomes an objective</h3><div class="mechanism-path"><span>prediction + target</span><span class="relationship-label">produces</span><strong>loss</strong><span class="relationship-label">cause/effect</span><span>gradient-based update</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><strong>Loss Function</strong><span class="relationship-label">part of</span><a href="#concept-neural-network-training">Neural Network Training</a></li><li><a href="#concept-cross-entropy">Cross Entropy</a><span class="relationship-label">application</span><strong>Loss Function</strong></li><li><strong>Loss Function</strong><span class="relationship-label">cause/effect</span><a href="#concept-gradient">Gradient</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>The canonical file distinguishes loss from evaluation metrics and records Keras <code>compile()</code> use. Task-based loss selection and loss/metric combinations remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-cross-entropy">Cross Entropy</a><a href="#concept-gradient">Gradient</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
 
-          <article id="self-attention" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Self-Attention</h3><span class="availability-label">Supporting graph node</span></div><p>讓序列中的每個 token 依與其他 tokens 的關聯程度整合資訊，將初始 embedding 轉成 contextual representation。</p></div>
-            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">part-of</span> → Transformer</dd></div></dl>
+          <article id="concept-backpropagation" class="explorer-sheet" data-concept-sheet="backpropagation" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Backpropagation</h2><p class="concept-definition">Uses the chain rule in reverse to compute gradients through network layers.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--familiar"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 聽過但模糊</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Computes gradients; it does not itself update parameters.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-loss-function">Loss Function</a>, <a href="#concept-gradient">Gradient</a>, Activation derivative</dd></div><div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span><span class="source-badge">AI Methods (metadata)</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Reverse gradient computation</h3><div class="mechanism-path"><span>loss</span><span class="relationship-label">cause/effect</span><strong>chain-rule reverse pass</strong><span class="relationship-label">produces</span><span>gradients</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><strong>Backpropagation</strong><span class="relationship-label">part of</span><a href="#concept-neural-network-training">Neural Network Training</a></li><li><strong>Backpropagation</strong><span class="relationship-label">cause/effect</span><a href="#concept-gradient">Gradient</a></li><li><strong>Backpropagation</strong><span class="relationship-label">contrast</span><a href="#concept-optimizer">Optimizer parameter update</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>The canonical material records framework use and the gradient/update distinction. Hand calculation for multilayer networks and vanishing or exploding gradients remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-gradient">Gradient</a><a href="#concept-optimizer">Optimizer</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
 
-          <article id="transformer" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Transformer</h3><span class="availability-label">Supporting graph node</span></div><p>以 Self-Attention 為核心的序列模型，讓每個 token 參考序列中的其他 token，逐層形成融合上下文的 representation。</p></div>
-            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd><span class="relationship-label">prerequisite</span> → Large Language Model</dd></div></dl>
+          <article id="concept-activation-function" class="explorer-sheet" data-concept-sheet="activation-function" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Activation Function</h2><p class="concept-definition">Applies a transformation after a weighted sum so a network can represent nonlinear behavior.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Shapes hidden-layer behavior and task-specific output behavior.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-weight-and-bias">Weight and Bias</a>, weighted sum</dd></div><div><dt>Sources</dt><dd><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span><span class="source-badge">AI Methods (metadata)</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Weighted sum to activated output</h3><div class="mechanism-path"><span>weighted sum + bias</span><span class="relationship-label">cause/effect</span><strong>activation</strong><span class="relationship-label">produces</span><span>layer output</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><strong>Activation Function</strong><span class="relationship-label">part of</span><a href="#concept-neural-network">Neural Network</a></li><li><strong>Activation Function</strong><span class="relationship-label">prerequisite</span><a href="#concept-softmax">Softmax</a></li><li><strong>Softmax</strong><span class="relationship-label">contrast</span><span>sigmoid output behavior</span></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and evidence limits</summary><p>The canonical material records ReLU, sigmoid, Softmax, and MNIST use. Sigmoid is not a canonical prototype node, and later empirical comparison is still planned.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-softmax">Softmax</a><a href="#concept-neural-network">Neural Network</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
-        </div>
 
-        <div class="concept-group">
-          <header class="concept-group__heading"><h2>Language Models</h2><p>以 next-token prediction 為基本任務的語言模型層次。</p></header>
-          <article id="large-language-model" class="concept-index-item concept-index-item--supporting" tabindex="-1">
-            <div class="concept-index-item__main"><div class="concept-index-item__title"><h3>Large Language Model</h3><span class="availability-label">Supporting graph node</span></div><p>以大量文字與大規模參數訓練的 Language Model；基本任務仍是 next-token prediction。</p></div>
-            <dl class="concept-index-item__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --></div><div><dt>Sources</dt><dd class="source-badges"><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Key relation</dt><dd>Transformer → <span class="relationship-label">prerequisite</span></dd></div></dl>
+          <article id="concept-distribution" class="explorer-sheet" data-concept-sheet="distribution" data-cluster="language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Distribution</h2><p class="concept-definition">Represents the relative possibilities assigned across candidate outcomes.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Connects Softmax outputs to argmax, sampling, entropy, and Cross Entropy.</dd></div><div><dt>Prerequisites</dt><dd>Candidate scores and relative possibility</dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span><span class="source-badge">AI Methods (listed, provenance malformed)</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>From relative possibilities to decisions</h3><div class="mechanism-path mechanism-path--fork"><span>distribution</span><span class="relationship-label">application</span><div><span>argmax <b>one choice</b></span><span>sampling <b>varied choice</b></span></div></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><strong>Distribution</strong><span class="relationship-label">prerequisite</span><a href="#concept-softmax">Softmax interpretation</a></li><li><strong>Distribution</strong><span class="relationship-label">prerequisite</span><a href="#concept-sampling">Sampling</a></li><li><strong>Distribution</strong><span class="relationship-label">prerequisite</span><a href="#concept-cross-entropy">Cross Entropy</a></li></ul></section>
+            <details class="evidence-disclosure" open><summary>Provenance warning</summary><p>The canonical file places course links under <code>我實際用過</code> and unresolved continuous/discrete and calibration questions under <code>課程來源</code>. The prototype does not silently normalize that structure into stronger provenance.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-softmax">Softmax</a><a href="#concept-sampling">Sampling</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
           </article>
-        </div>
-      </section>
 
-      <aside class="index-evidence section-field section-field--dark">
-        <div class="page-frame index-evidence__inner">
-          <h2>Evidence boundary</h2>
-          <p>Recorded mastery 只是目前 knowledge system 中的記錄，沒有 formal confirmation date 或 validation record。技術鏈目前主要來自 TAICA 生成式 AI，不應被描述為跨課程證據。</p>
-        </div>
+          <article id="concept-language-model" class="explorer-sheet" data-concept-sheet="language-model" data-cluster="language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Language Model</h2><p class="concept-definition">Uses previous tokens to produce scores for possible next tokens and repeat the generation step.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Connects token representation, next-token distribution, and iterative generation.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-tokenization">Tokenization</a>, <a href="#concept-embedding">Embedding</a>, <a href="#concept-softmax">Softmax</a>, <a href="#concept-sampling">Sampling</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>The recorded generation loop</h3><div class="mechanism-path"><span>previous tokens</span><span class="relationship-label">cause/effect</span><span>scores</span><span class="relationship-label">cause/effect</span><a href="#concept-softmax">Softmax</a><span class="relationship-label">produces</span><span>distribution</span><span class="relationship-label">application</span><a href="#concept-sampling">Sampling</a></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-tokenization">Tokenization</a><span class="relationship-label">prerequisite</span><strong>Language Model</strong></li><li><strong>Language Model</strong><span class="relationship-label">evolution</span><a href="#concept-large-language-model">Large Language Model</a></li><li><a href="#concept-cross-entropy">Cross Entropy</a><span class="relationship-label">application</span><strong>Language Model training</strong></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>The canonical file contains a detailed first-person-labelled mechanism, but practical-use evidence is empty. Masked attention and how next-token training yields broader capability remain unresolved.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-transformer">Transformer</a><a href="#concept-large-language-model">Large Language Model</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
+          </article>
+
+          <article id="concept-embedding" class="explorer-sheet" data-concept-sheet="embedding" data-cluster="representation language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Embedding</h2><p class="concept-definition">A learnable dense vector looked up for each token and updated through training.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Turns token IDs into learnable representations used by later sequence mechanisms.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-tokenization">Tokenization</a>, <a href="#concept-weight-and-bias">learnable parameters</a>, <a href="#concept-backpropagation">Backpropagation</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Lookup, then learn</h3><div class="mechanism-path"><a href="#concept-tokenization">token ID</a><span class="relationship-label">cause/effect</span><strong>embedding lookup</strong><span class="relationship-label">produces</span><span>initial vector representation</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-tokenization">Tokenization</a><span class="relationship-label">prerequisite</span><strong>Embedding</strong></li><li><strong>Embedding</strong><span class="relationship-label">prerequisite</span><a href="#concept-self-attention">Self-Attention</a></li><li><a href="#concept-neural-network-training">Training</a><span class="relationship-label">cause/effect</span><strong>Embedding parameters</strong></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>Supported mainly by TAICA Week 4. The canonical material distinguishes initial and contextual representations. Dimension interpretability and static versus contextual embeddings remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-self-attention">Self-Attention</a><a href="#concept-transformer">Transformer</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
+          </article>
+
+          <article id="concept-self-attention" class="explorer-sheet" data-concept-sheet="self-attention" data-cluster="representation language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Self-Attention</h2><p class="concept-definition">Builds context-dependent representations by weighting information from visible tokens.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Turns initial token representations into contextual representations.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-embedding">Embedding</a>, <a href="#concept-query-key-and-value">Query, Key, and Value</a>, <a href="#concept-softmax">Softmax</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Context from weighted information</h3><div class="formula-line"><code>softmax(QKᵀ / √dK)V</code><span>The canonical file includes a simplified two-token worked example.</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-query-key-and-value">Query, Key, and Value</a><span class="relationship-label">prerequisite</span><strong>Self-Attention</strong></li><li><a href="#concept-softmax">Softmax</a><span class="relationship-label">part of</span><strong>Self-Attention</strong></li><li><strong>Self-Attention</strong><span class="relationship-label">part of</span><a href="#concept-transformer">Transformer</a></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>Supported mainly by TAICA Week 4 and recorded hand calculation. Scaling, masking, and multi-head mathematics remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-query-key-and-value">Query, Key, and Value</a><a href="#concept-transformer">Transformer</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
+          </article>
+
+          <article id="concept-transformer" class="explorer-sheet" data-concept-sheet="transformer" data-cluster="representation language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Transformer</h2><p class="concept-definition">A sequence architecture that stacks contextual representation blocks around Self-Attention.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Connects token representations and attention to the architecture used by Large Language Models.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-tokenization">Tokenization</a>, <a href="#concept-embedding">Embedding</a>, <a href="#concept-self-attention">Self-Attention</a>, <a href="#concept-neural-network">Neural Network</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Recorded architecture path</h3><div class="mechanism-path"><span>tokens + position</span><span class="relationship-label">part of</span><strong>attention</strong><span class="relationship-label">part of</span><span>FFN, residual, normalization</span><span class="relationship-label">produces</span><span>stacked contextual representations</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-self-attention">Self-Attention</a><span class="relationship-label">part of</span><strong>Transformer</strong></li><li><strong>Transformer</strong><span class="relationship-label">prerequisite</span><a href="#concept-large-language-model">Large Language Model</a></li><li><a href="#concept-neural-network-training">Neural Network Training</a><span class="relationship-label">application</span><strong>Transformer parameter learning</strong></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>Supported mainly by TAICA Week 4. Positional encoding, multi-head attention, feed-forward networks, residual connections, normalization, and architecture variants remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-large-language-model">Large Language Model</a><a href="#concept-neural-network-training">Training</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
+          </article>
+
+          <article id="concept-large-language-model" class="explorer-sheet" data-concept-sheet="large-language-model" data-cluster="language" data-sources="taica" data-tier="tier-2">
+            <header class="explorer-sheet__header"><div><h2>Large Language Model</h2><p class="concept-definition">A Language Model trained with large text data and many parameters, still grounded in next-token prediction.</p></div><div class="sheet-status"><span class="depth-label">Rich Explorer concept</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p><small>Not independently verified</small></div></header>
+            <dl class="sheet-at-a-glance"><div><dt>Role</dt><dd>Extends the Language Model path through Transformer-based generation and text-task applications.</dd></div><div><dt>Prerequisites</dt><dd><a href="#concept-language-model">Language Model</a>, <a href="#concept-transformer">Transformer</a>, <a href="#concept-tokenization">Tokenization</a>, <a href="#concept-embedding">Embedding</a></dd></div><div><dt>Sources</dt><dd><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></dd></div></dl>
+            <section class="mechanism-preview"><h3>Large scale, same recorded task</h3><div class="mechanism-path"><span>previous tokens</span><span class="relationship-label">cause/effect</span><strong>Transformer</strong><span class="relationship-label">produces</span><span>next-token distribution</span></div></section>
+            <section class="supported-paths"><h3>Supported paths</h3><ul><li><a href="#concept-language-model">Language Model</a><span class="relationship-label">prerequisite</span><strong>Large Language Model</strong></li><li><a href="#concept-transformer">Transformer</a><span class="relationship-label">prerequisite</span><strong>Large Language Model</strong></li><li><strong>Large Language Model</strong><span class="relationship-label">application</span><span>course concept question answering</span></li></ul></section>
+            <details class="evidence-disclosure"><summary>Sources and unresolved questions</summary><p>Supported mainly by TAICA Week 4. The canonical file records course concept Q&amp;A use. Scaling capabilities, pretraining, fine-tuning, and alignment remain incomplete.</p></details>
+            <footer class="sheet-actions"><div><span>Explore next</span><a href="#concept-language-model">Language Model</a><a href="#concept-transformer">Transformer</a></div><a class="back-to-results" href="#concept-results">Back to results</a></footer>
+          </article>
+
+          <article id="concept-weight-and-bias" class="explorer-sheet explorer-sheet--node" data-concept-sheet="weight-and-bias" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Weight and Bias</h2><p class="concept-definition">Learnable parameters combined in a weighted sum and changed during training.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><strong>Weight and Bias</strong><span class="relationship-label">part of</span><a href="#concept-neural-network">Neural Network</a><span class="relationship-label">updated by</span><a href="#concept-optimizer">Optimizer</a></div>
+            <p class="node-source"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-gradient" class="explorer-sheet explorer-sheet--node" data-concept-sheet="gradient" data-cluster="training" data-sources="ai-programming taica" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Gradient</h2><p class="concept-definition">A vector of partial derivatives that describes the direction and rate of loss change.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><a href="#concept-backpropagation">Backpropagation</a><span class="relationship-label">produces</span><strong>Gradient</strong><span class="relationship-label">used by</span><a href="#concept-optimizer">Optimizer</a></div>
+            <p class="node-source"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-optimizer" class="explorer-sheet explorer-sheet--node" data-concept-sheet="optimizer" data-cluster="training" data-sources="ai-programming" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Optimizer</h2><p class="concept-definition">Receives gradients and updates weights and biases during training.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><a href="#concept-gradient">Gradient</a><span class="relationship-label">prerequisite</span><strong>Optimizer</strong><span class="relationship-label">part of</span><a href="#concept-neural-network-training">Neural Network Training</a></div>
+            <p class="node-source"><span class="source-badge">人工智慧程式設計</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-epoch-and-batch" class="explorer-sheet explorer-sheet--node" data-concept-sheet="epoch-and-batch" data-cluster="training" data-sources="ai-programming" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Epoch and Batch</h2><p class="concept-definition">A batch is one update group; one pass over all training samples is an epoch.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><strong>Epoch and Batch</strong><span class="relationship-label">part of</span><a href="#concept-neural-network-training">Neural Network Training</a></div>
+            <p class="node-source"><span class="source-badge">人工智慧程式設計</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-classification" class="explorer-sheet explorer-sheet--node" data-concept-sheet="classification" data-cluster="training" data-sources="ai-programming" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Classification</h2><p class="concept-definition">Predicts discrete labels, including binary, mutually exclusive multi-class, and multi-label outputs.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><a href="#concept-softmax">Softmax</a><span class="relationship-label">application</span><strong>Mutually exclusive classification</strong></div>
+            <p class="node-source"><span class="source-badge">人工智慧程式設計</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-sampling" class="explorer-sheet explorer-sheet--node" data-concept-sheet="sampling" data-cluster="language" data-sources="taica" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Sampling</h2><p class="concept-definition">Draws from a probability distribution to preserve variation instead of always taking argmax.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><a href="#concept-distribution">Distribution</a><span class="relationship-label">prerequisite</span><strong>Sampling</strong><span class="relationship-label">application</span><a href="#concept-language-model">Language Model</a></div>
+            <p class="node-source"><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-tokenization" class="explorer-sheet explorer-sheet--node" data-concept-sheet="tokenization" data-cluster="representation language" data-sources="taica" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Tokenization</h2><p class="concept-definition">Turns text into tokens and token IDs before embedding lookup.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--familiar"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 聽過但模糊</p></div></header>
+            <div class="node-path"><strong>Tokenization</strong><span class="relationship-label">prerequisite</span><a href="#concept-embedding">Embedding</a></div>
+            <p class="node-source"><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+
+          <article id="concept-query-key-and-value" class="explorer-sheet explorer-sheet--node" data-concept-sheet="query-key-and-value" data-cluster="representation" data-sources="taica" data-tier="tier-3">
+            <header class="explorer-sheet__header"><div><h2>Query, Key, and Value</h2><p class="concept-definition">Learned projections with distinct search, match, and information roles in attention.</p></div><div class="sheet-status"><span class="depth-label">Structural graph node</span><p class="mastery-state mastery-state--explain"><span aria-hidden="true"></span><strong>Recorded mastery</strong> 可以解釋</p></div></header>
+            <div class="node-path"><strong>Query, Key, and Value</strong><span class="relationship-label">part of</span><a href="#concept-self-attention">Self-Attention</a></div>
+            <p class="node-source"><span class="source-badge source-badge--blush wordmark">TAICA 生成式 AI</span></p>
+            <a class="back-to-results" href="#concept-results">Back to results</a>
+          </article>
+        </section>
+      </div>
+
+      <aside class="explorer-boundary">
+        <strong>Evidence boundary</strong>
+        <p>Relationship labels may formalize supported prose. Recorded mastery has no independent confirmation record, and first-person-labelled text has no stored authorship metadata.</p>
       </aside>
     </main>
 
     <footer class="site-footer">
       <div class="page-frame site-footer__inner">
-        <div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div>
-        <nav class="site-footer__nav" aria-label="頁尾導覽"><a href="index.html">首頁</a><a href="concepts.html">Concepts</a><a href="index.html#agents">About / AGENTS</a></nav>
-        <p>Concept-oriented index · Courses remain provenance.</p>
+        <div class="site-footer__identity" aria-hidden="true">
+          <span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span>
+          <span>AI Knowledge System</span>
+        </div>
+        <nav class="site-footer__nav" aria-label="頁尾導覽"><a href="index.html">Home</a><a href="concepts.html">Knowledge Explorer</a><a href="index.html#agents">System rules</a></nav>
+        <p>Courses remain provenance. Concepts remain canonical.</p>
       </div>
     </footer>
   </body>

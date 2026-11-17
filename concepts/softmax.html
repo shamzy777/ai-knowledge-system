@@ -3,42 +3,121 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Softmax concept page with classification and generation perspectives.">
+    <meta name="description" content="Softmax as one canonical concept connecting classification decisions with language-generation sampling.">
     <meta name="theme-color" content="#f7f3f0">
+    <link rel="icon" href="data:,">
     <title>Softmax · AI Knowledge System</title>
     <link rel="preconnect" href="https://api.fontshare.com">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/learning.js" defer></script>
   </head>
-  <body id="top">
+  <body id="top" class="concept-page concept-page--softmax">
     <a class="skip-link" href="#main-content">跳到主要內容</a>
-    <header class="site-header"><nav class="site-nav page-frame" aria-label="主要導覽"><a class="site-identity" href="../index.html" aria-label="AI Knowledge System 首頁"><span class="merge-mark" aria-hidden="true"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></a><div class="site-nav__links"><a href="../index.html">首頁</a><a aria-current="page" href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></div></nav></header>
+    <header class="site-header">
+      <nav class="site-nav page-frame" aria-label="主要導覽">
+        <a class="site-identity" href="../index.html" aria-label="AI Knowledge System 首頁">
+          <span class="merge-mark" aria-hidden="true"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span>
+          <span>AI Knowledge System</span>
+        </a>
+        <div class="site-nav__links"><a href="../index.html">Home</a><a aria-current="page" href="../concepts.html">Explorer</a><a href="../index.html#agents">System rules</a></div>
+      </nav>
+    </header>
 
     <main id="main-content">
-      <div class="breadcrumb page-frame" aria-label="Breadcrumb"><a href="../concepts.html">Concepts</a><span aria-hidden="true">/</span><span aria-current="page">Softmax</span></div>
+      <div class="breadcrumb page-frame" aria-label="Breadcrumb"><a href="../concepts.html">Explorer</a><span aria-hidden="true">/</span><span aria-current="page">Softmax</span></div>
 
-      <header class="concept-masthead page-frame">
-        <div class="concept-masthead__title"><h1>Softmax</h1><p class="concept-definition">Softmax is an output-layer activation that converts multiple scores into a relative distribution whose values sum to one.</p></div>
-        <dl class="concept-masthead__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --><dd class="mastery-note"><small>來自目前系統記錄，尚無獨立驗證日期。</small></dd></div><div><dt>Course sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Relationship role</dt><dd><span class="relationship-label">application</span> classification / generation</dd></div><div><dt>Knowledge layer</dt><dd>Prototype presentation derived from one canonical node</dd></div></dl>
+      <header class="concept-hero page-frame">
+        <div class="concept-hero__intro">
+          <nav class="concept-back-nav" aria-label="Return to Knowledge Explorer"><a class="concept-back" href="../concepts.html">Back to Explorer</a></nav>
+          <h1>Softmax</h1>
+          <p class="concept-definition">Turns scores into a relative distribution for selection or sampling.</p>
+          <div class="learning-state" aria-label="Recorded mastery: 可以解釋, not independently verified">
+            <span class="learning-state__marker" aria-hidden="true"></span>
+            <span><strong>Recorded mastery</strong><b>可以解釋</b><small>Not independently verified</small></span>
+          </div>
+          <p class="concept-layer-note">This is presentation-layer content derived from the canonical concept. It is not a new permanent knowledge node.</p>
+        </div>
+
+        <figure class="mechanism-figure mechanism-figure--softmax" aria-labelledby="core-title" aria-describedby="core-caption" data-learning-scope>
+          <h2 id="core-title">Scores become a distribution</h2>
+          <div class="softmax-flow" aria-label="Scores pass through Softmax to form a probability distribution, then branch to argmax or sampling">
+            <div class="mechanism-node mechanism-node--muted"><span>Input</span><strong>Scores</strong><small>Recorded values absent</small></div>
+            <span class="mechanism-connector" aria-hidden="true">→</span>
+            <div class="mechanism-node mechanism-node--accent"><span>Transform</span><strong>Softmax</strong><small>One canonical concept</small></div>
+            <span class="mechanism-connector" aria-hidden="true">→</span>
+            <div class="mechanism-node mechanism-node--distribution"><span>Distribution</span><strong>0.66<br>0.24<br>0.10</strong><small>Sum = 1</small></div>
+          </div>
+          <div class="decision-fork" aria-label="Two decision paths from the same probability distribution">
+            <div class="decision-switcher" data-learning-switcher data-url-key="decision" data-default-value="argmax" aria-label="Compare Argmax and Sampling"><button type="button" data-switch-target="argmax">Argmax</button><button type="button" data-switch-target="sampling">Sampling</button></div>
+            <div class="decision-card decision-card--active" data-switch-panel="argmax"><span>Choose the maximum</span><strong>cat · 0.66</strong><small>Classification path</small><p>Argmax selects the highest value in the recorded distribution.</p></div>
+            <div class="decision-card decision-card--active" data-switch-panel="sampling"><span>Draw from the distribution</span><strong>all three remain candidates</strong><small>Generation path</small><p>Sampling uses the relative probabilities; the notes do not record one sampled outcome.</p></div>
+          </div>
+          <figcaption id="core-caption">The output example is recorded in the canonical concept. Its input scores are not, so none are reconstructed here.</figcaption>
+        </figure>
       </header>
 
-      <section class="detail-split section-field" aria-label="Why it matters and prerequisites"><div class="page-frame detail-split__inner"><div><h2>Why it matters</h2><p>The same mechanism supports two applications recorded in different courses. In classification, argmax can select the highest-scoring mutually exclusive class; in probabilistic generation, sampling can select from a next-token distribution while preserving variation.</p></div><div><h2>Prerequisites</h2><ul class="relation-list"><li><span class="relationship-label">prerequisite</span><span>Activation Function</span></li><li><span class="relationship-label">prerequisite</span><span>Classification</span></li></ul></div></div></section>
+      <section class="concept-position page-frame local-map" aria-labelledby="position-title">
+        <div class="section-heading"><h2 id="position-title">Local mental model</h2><p>One transformation produces a distribution that supports two recorded application paths.</p></div>
+        <div class="local-map__grid" aria-label="Activation Function leads to Softmax, which applies to Classification and Language Model generation">
+          <div class="local-map__group"><span>Prerequisite</span><a href="../concepts.html#concept-activation-function">Activation Function</a></div>
+          <span class="local-map__relation">prerequisite</span>
+          <strong class="local-map__focus">Softmax</strong>
+          <span class="local-map__relation">application</span>
+          <div class="local-map__group"><span>Downstream</span><a href="../concepts.html#concept-classification">Classification</a><a href="../concepts.html#concept-language-model">Language Model generation</a></div>
+        </div>
+      </section>
 
-      <section class="core-idea page-frame" aria-labelledby="core-title"><div class="detail-heading"><h2 id="core-title">Core idea</h2><p>Softmax 同時考慮所有候選 scores；一個候選的份額上升，其他候選的份額就會下降。</p></div><div class="decision-flow" aria-label="Softmax downstream decisions"><span>scores</span><strong>Softmax</strong><span>probability distribution</span><div><span>argmax → classification / stable choice</span><span>sampling → generation / varied choice</span></div></div><div class="contrast-pair"><div><strong>Softmax</strong><span>outputs compete and sum to one; used for mutually exclusive choices</span></div><div><strong>Sigmoid</strong><span>outputs are independent; used for binary classification or labels that may be simultaneously true</span></div></div></section>
+      <section class="probability-example page-frame" aria-labelledby="example-title">
+        <div class="section-heading"><h2 id="example-title">Relative confidence, not a guarantee</h2><p>The canonical file records a three-class example. TAICA notes add that the values express relative confidence; their reliability still depends on model quality and calibration.</p></div>
+        <div class="probability-example__values" aria-label="Recorded distribution: cat 0.66, dog 0.24, bird 0.10">
+          <div><strong>0.66</strong><span>cat</span></div>
+          <div><strong>0.24</strong><span>dog</span></div>
+          <div><strong>0.10</strong><span>bird</span></div>
+        </div>
+      </section>
 
-      <section class="perspective-section section-field section-field--dark" aria-labelledby="perspective-title"><div class="page-frame"><div class="detail-heading detail-heading--inverse"><h2 id="perspective-title">Cross-course perspectives</h2><p>下游應用不同，但 score-to-distribution 機制只有一個。</p></div><figure class="perspective-merge" aria-labelledby="perspective-caption"><div class="perspective-source"><span class="component-label">人工智慧程式設計</span><h3>Classification context</h3><ul><li>output activation for mutually exclusive multi-class classification</li><li>contrast with sigmoid</li><li>activation-function and classification context, with an integrated MNIST interpretation across the existing material</li></ul></div><div class="perspective-junction"><span class="relationship-label">application</span><strong>Softmax</strong><span>one canonical concept</span></div><div class="perspective-source perspective-source--blush"><span class="component-label">TAICA 生成式 AI</span><h3>Generation context</h3><ul><li>scores become a probability distribution</li><li>argmax and sampling use the same distribution differently</li><li>next-token scores → Softmax → sampling</li></ul></div><figcaption id="perspective-caption">Classification selects among classes; generation samples among possible next tokens. Splitting these into course-specific Softmax pages would duplicate the mechanism and hide the connection.</figcaption></figure><div class="source-comparison" role="group" aria-label="Source perspective comparison"><div><strong>AI Programming</strong><span>Classification output behavior and implementation choices</span></div><div><strong>TAICA</strong><span>Probability distribution, argmax / sampling, and next-token generation</span></div></div></div></section>
+      <section class="course-mapping" aria-labelledby="perspective-title" data-learning-scope>
+        <div class="page-frame course-mapping__inner">
+          <div class="section-heading section-heading--inverse"><h2 id="perspective-title">Same Softmax, different operational focus</h2></div>
+          <div class="perspective-switcher" data-learning-switcher data-url-key="view" data-default-value="integrated" aria-label="Choose a course perspective"><button type="button" data-switch-target="integrated">Integrated</button><button type="button" data-switch-target="ai-programming">AI Programming</button><button type="button" data-switch-target="taica">TAICA Generative AI</button></div>
+          <div class="perspective-panel" data-switch-panel="integrated"><strong>One canonical Softmax concept</strong><p>Classification and language generation are complementary applications of the same score-to-distribution transformation.</p></div>
+          <div class="perspective-panel" data-switch-panel="ai-programming"><strong>Classification output</strong><p>Uses Softmax for mutually exclusive multi-class output and contrasts it with sigmoid in binary or independent-output settings.</p></div>
+          <div class="perspective-panel" data-switch-panel="taica"><strong>Distribution and generation</strong><p>Emphasizes probability distributions, argmax versus sampling, and next-token use in language generation.</p></div>
+          <p id="perspective-caption" class="perspective-caption">Switching views changes the evidence lens, not the canonical concept.</p>
 
-      <section class="mental-model page-frame" aria-labelledby="position-title"><div class="detail-heading"><h2 id="position-title">Where this concept sits</h2><p>下游決策與 Softmax 本身是不同步驟。</p></div><div class="mental-model__path"><div><span>Prerequisites</span><span>Activation Function</span><span>Classification</span></div><strong>Softmax</strong><div><span>Applications</span><span>Multi-class Classification</span><a href="../concepts.html#large-language-model">Language Model next-token generation</a></div></div></section>
+          <div class="contrast-register" aria-label="Recorded contrast between Softmax and sigmoid" data-switch-visible="integrated ai-programming">
+            <div><span>Softmax</span><strong>Mutually exclusive multi-class output</strong></div>
+            <div><span>Sigmoid</span><strong>Binary or independent-output contrast</strong><small>Contrast term only; no canonical prototype node is claimed.</small></div>
+          </div>
+        </div>
+      </section>
 
-      <section class="detail-register section-field" aria-label="Relationships and examples"><div class="page-frame detail-register__inner"><div><h2>Concept relationships</h2><ul class="relation-list"><li><span class="relationship-label">application</span><span>mutually exclusive multi-class Classification</span></li><li><span class="relationship-label">application</span><a href="../concepts.html#large-language-model">Language Model next-token probability and generation</a></li><li><span class="relationship-label">contrast</span><span>Softmax outputs compete and sum to one; sigmoid outputs are independent</span></li><li><span class="relationship-label">theory ↔ practice</span><span>TAICA probability-distribution framing ↔ AI Programming classification output examples</span></li></ul></div><div><h2>Applications / examples</h2><ul class="plain-list"><li>Taiwan myna classification: three class scores are converted into a distribution.</li><li>MNIST: ten output classes use Softmax.</li><li>Language generation: vocabulary scores become a next-token distribution before sampling.</li></ul></div></div></section>
+      <section class="learning-record page-frame" aria-labelledby="evidence-title">
+        <div class="learning-record__quote">
+          <h2 id="evidence-title">Recorded learning evidence</h2>
+          <blockquote>“Softmax 不是答案本身，而是把分數整理成機率分布。”</blockquote>
+          <p>The parent system labels this as <code>我的理解</code>. Explicit authorship and confirmation metadata is unavailable, so it is shown as learning evidence, not verified personal mastery.</p>
+        </div>
+        <div class="learning-record__questions">
+          <h2 id="mastery-title">Still open</h2>
+          <p>The system records an intent to practice calculating a small Softmax example by hand. No completed derivation is treated as established evidence.</p>
+        </div>
+      </section>
 
-      <section class="learning-evidence page-frame" aria-labelledby="evidence-title"><div><h2 id="evidence-title">Recorded learning evidence</h2><p class="learning-evidence__quote">Softmax 是一種用在 output layer 的 Activation Function，會把多個輸出分數轉換成總和為 1 的相對分布。</p></div><p class="learning-evidence__limit">The canonical file also records first-person-labeled use in the Taiwan myna and MNIST classroom examples. Authorship and confirmation metadata is not stored.</p></section>
+      <section class="evidence-ledger page-frame" aria-label="Sources and evidence limitations">
+        <details class="evidence-ledger__details">
+          <summary>Sources and evidence limits</summary>
+          <div class="evidence-ledger__grid">
+            <div><h2>Source ledger</h2><p><code>Softmax.md</code></p><ul><li>人工智慧程式設計: classification output activation</li><li>TAICA 生成式 AI: Week 2 distributions; Weeks 3 and 4 generation context</li></ul></div>
+            <div><h2>Evidence limits</h2><ul><li>The example records output probabilities, not the input scores.</li><li>Calibration is mentioned but not developed into a canonical concept.</li><li>Recorded mastery has no independent confirmation history.</li></ul></div>
+          </div>
+        </details>
+      </section>
 
-      <section class="mastery-section section-field section-field--dark" aria-labelledby="mastery-title"><div class="page-frame mastery-section__inner"><h2 id="mastery-title">Recorded mastery</h2><div><p class="mastery-section__state"><span aria-hidden="true">🟨</span> 可以解釋</p><!-- taste-skill-ignore: project mastery state --><p>This status exists in the current knowledge system, but no formal confirmation date or validation record is stored. It is not independently verified mastery.</p><p>The canonical file says further validation through multi-class classification practice is still expected.</p></div></div></section>
-
-      <section class="evidence-ledger page-frame" aria-label="Sources and evidence limitations"><div><h2>Sources</h2><h3>Canonical concept file</h3><p><code>Softmax.md</code></p><h3>Course/source material</h3><ul class="plain-list"><li>人工智慧程式設計: <code>2026-09-29 手寫筆記整理</code>, “Perceptron 與 Neural Network”</li><li>人工智慧程式設計: <code>多層感知器的學習、訓練與驗證流程</code></li><li>TAICA 生成式 AI Week 2: <code>神經網路</code></li><li>TAICA 生成式 AI Week 3: <code>GAN to LLM</code></li><li>TAICA 生成式 AI Week 4: <code>LLM and Transformer</code></li></ul></div><div><h2>Evidence limitations</h2><ul class="plain-list"><li>Recorded mastery has no formal confirmation history.</li><li>First-person-labeled explanation and classroom-use statement have no authorship or approval metadata.</li><li>The handwritten AI Programming source warns that OCR errors remain and that source organization does not itself prove understanding.</li><li>The integrated Softmax-in-MNIST interpretation is supported across the canonical Softmax and Activation Function material, classification material, and the MLP note; no single source note states the complete claim.</li><li>Relationship labels summarize mechanisms already expressed in prose; no separately confirmed graph-edge record exists.</li></ul></div></section>
+      <section class="explore-next"><div class="page-frame explore-next__inner"><div><h2>Explore next</h2><p>Follow the distribution into a decision, a loss, or a generated token.</p></div><nav class="explore-next__links" aria-label="Related concepts"><a href="../concepts.html#concept-distribution">Distribution</a><a href="../concepts.html#concept-sampling">Sampling</a><a href="cross-entropy.html">Cross Entropy</a><a href="../concepts.html">Back to Explorer</a></nav></div></section>
     </main>
 
-    <footer class="site-footer"><div class="page-frame site-footer__inner"><div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div><nav class="site-footer__nav" aria-label="頁尾導覽"><a href="../index.html">首頁</a><a href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></nav><p>Presentation layer · Canonical source remains read-only.</p></div></footer>
+    <footer class="site-footer"><div class="page-frame site-footer__inner"><div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div><nav class="site-footer__nav" aria-label="頁尾導覽"><a href="../index.html">Home</a><a href="../concepts.html">Knowledge Explorer</a><a href="../index.html#agents">System rules</a></nav><p>Presentation layer. Canonical source remains read-only.</p></div></footer>
   </body>
 </html>

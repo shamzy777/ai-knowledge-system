@@ -3,42 +3,135 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Cross Entropy concept page with implementation and information perspectives.">
+    <meta name="description" content="Cross Entropy as the comparison between target and predicted distributions that becomes a training loss.">
     <meta name="theme-color" content="#f7f3f0">
+    <link rel="icon" href="data:,">
     <title>Cross Entropy · AI Knowledge System</title>
     <link rel="preconnect" href="https://api.fontshare.com">
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/learning.js" defer></script>
   </head>
-  <body id="top">
+  <body id="top" class="concept-page concept-page--cross-entropy">
     <a class="skip-link" href="#main-content">跳到主要內容</a>
-    <header class="site-header"><nav class="site-nav page-frame" aria-label="主要導覽"><a class="site-identity" href="../index.html" aria-label="AI Knowledge System 首頁"><span class="merge-mark" aria-hidden="true"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></a><div class="site-nav__links"><a href="../index.html">首頁</a><a aria-current="page" href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></div></nav></header>
+    <header class="site-header">
+      <nav class="site-nav page-frame" aria-label="主要導覽">
+        <a class="site-identity" href="../index.html" aria-label="AI Knowledge System 首頁">
+          <span class="merge-mark" aria-hidden="true"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span>
+          <span>AI Knowledge System</span>
+        </a>
+        <div class="site-nav__links"><a href="../index.html">Home</a><a aria-current="page" href="../concepts.html">Explorer</a><a href="../index.html#agents">System rules</a></div>
+      </nav>
+    </header>
 
     <main id="main-content">
-      <div class="breadcrumb page-frame" aria-label="Breadcrumb"><a href="../concepts.html">Concepts</a><span aria-hidden="true">/</span><span aria-current="page">Cross Entropy</span></div>
+      <div class="breadcrumb page-frame" aria-label="Breadcrumb"><a href="../concepts.html">Explorer</a><span aria-hidden="true">/</span><span aria-current="page">Cross Entropy</span></div>
 
-      <header class="concept-masthead page-frame">
-        <div class="concept-masthead__title"><h1>Cross Entropy</h1><p class="concept-definition">Cross Entropy measures the cost of using a model distribution <code>Q</code> to describe a target distribution <code>P</code>, assigning a larger loss when the correct answer receives low probability.</p></div>
-        <dl class="concept-masthead__meta"><div><dt>Recorded mastery</dt><dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state --><dd class="mastery-note"><small>來自目前系統記錄，尚無獨立驗證日期。</small></dd></div><div><dt>Course sources</dt><dd class="source-badges"><span class="source-badge">人工智慧程式設計</span><span class="source-badge source-badge--blush">TAICA 生成式 AI</span></dd></div><div><dt>Relationship role</dt><dd><span class="relationship-label">theory ↔ practice</span></dd></div><div><dt>Knowledge layer</dt><dd>Prototype presentation derived from one canonical node</dd></div></dl>
+      <header class="concept-hero page-frame">
+        <div class="concept-hero__intro">
+          <nav class="concept-back-nav" aria-label="Return to Knowledge Explorer"><a class="concept-back" href="../concepts.html">Back to Explorer</a></nav>
+          <h1>Cross Entropy</h1>
+          <p class="concept-definition">Compares target and model distributions to produce a training loss.</p>
+          <div class="learning-state" aria-label="Recorded mastery: 可以解釋, not independently verified">
+            <span class="learning-state__marker" aria-hidden="true"></span>
+            <span><strong>Recorded mastery</strong><b>可以解釋</b><small>Not independently verified</small></span>
+          </div>
+          <p class="concept-layer-note">This is presentation-layer content derived from the canonical concept. It is not a new permanent knowledge node.</p>
+        </div>
+
+        <figure class="mechanism-figure mechanism-figure--entropy" aria-labelledby="core-title" aria-describedby="core-caption" data-learning-scope>
+          <h2 id="core-title">Target meets model distribution</h2>
+          <div class="entropy-comparison" aria-label="Target distribution P and predicted distribution Q feed into Cross Entropy, producing a loss and training signal">
+            <div class="distribution-pair">
+              <div class="distribution-row"><span>Target · P</span><strong>[1, 0, 0]</strong><small>Recorded example</small></div>
+              <div class="distribution-row distribution-row--prediction"><span>Prediction · Q</span><strong>[0.6, 0.3, 0.1]</strong><small>Recorded example</small></div>
+            </div>
+            <span class="mechanism-connector" aria-hidden="true">→</span>
+            <div class="mechanism-node mechanism-node--accent"><span>Compare</span><strong>Cross Entropy</strong><small>Cost of using Q for P</small></div>
+            <span class="mechanism-connector" aria-hidden="true">→</span>
+            <nav class="loss-signal" aria-label="Continue to the training loop"><strong>Loss</strong><span>training signal</span><a href="neural-network-training.html">Training loop</a></nav>
+          </div>
+          <div class="direction-switcher" data-learning-switcher data-url-key="probability" data-default-value="higher" aria-label="Compare the correct-target probability"><button type="button" data-switch-target="higher">Higher on correct target</button><button type="button" data-switch-target="lower">Lower on correct target</button></div>
+          <div class="direction-panel" data-switch-panel="higher"><strong>Q moves closer to P</strong><span>Cross Entropy becomes lower.</span></div>
+          <div class="direction-panel direction-panel--warning" data-switch-panel="lower"><strong>Q assigns less probability to the correct target</strong><span>Cross Entropy becomes larger.</span></div>
+          <figcaption id="core-caption">The recorded intuition is directional: less probability on the correct target produces a larger loss; a closer Q produces a smaller Cross Entropy.</figcaption>
+        </figure>
       </header>
 
-      <section class="detail-split section-field" aria-label="Why it matters and prerequisites"><div class="page-frame detail-split__inner"><div><h2>Why it matters</h2><p>Cross Entropy is a Loss Function that turns the mismatch between a target and a model distribution into a training loss. The existing system connects this same concept to implemented classification tasks and to next-token language-model training.</p></div><div><h2>Prerequisites</h2><ul class="relation-list"><li><span class="relationship-label">prerequisite</span><span>Probability Distribution</span></li><li><span class="relationship-label">prerequisite</span><span>Information</span></li><li><span class="relationship-label">prerequisite</span><span>Entropy</span></li><li><span class="relationship-label">prerequisite</span><a href="softmax.html">Softmax</a></li></ul></div></div></section>
+      <section class="concept-position page-frame local-map" aria-labelledby="position-title">
+        <div class="section-heading"><h2 id="position-title">Local mental model</h2><p>Cross Entropy connects distributions to the loss stage used during parameter learning.</p></div>
+        <div class="local-map__grid" aria-label="Distribution and Softmax lead to Cross Entropy, which is part of Neural Network Training and applies to Language Model training">
+          <div class="local-map__group"><span>Prerequisites</span><a href="../concepts.html#concept-distribution">Distribution</a><a href="softmax.html">Softmax</a></div>
+          <span class="local-map__relation">prerequisite</span>
+          <strong class="local-map__focus">Cross Entropy</strong>
+          <span class="local-map__relation">part-of / application</span>
+          <div class="local-map__group"><span>Downstream</span><a href="neural-network-training.html">Neural Network Training</a><a href="../concepts.html#concept-language-model">Language Model training</a></div>
+        </div>
+      </section>
 
-      <section class="core-idea page-frame" aria-labelledby="core-title"><div class="detail-heading"><h2 id="core-title">Core idea</h2><p>課程記錄的直覺是：正確答案被分配很低機率時，給予較大懲罰。</p></div><div class="causal-stack" aria-label="Recorded Cross Entropy relationship"><span><code>Q</code> becomes closer to <code>P</code></span><span aria-hidden="true">↓</span><strong>Cross Entropy becomes smaller</strong><span aria-hidden="true">↓</span><span>KL Divergence becomes smaller</span></div><p class="core-note">The canonical note records that KL Divergence can be expressed as Cross Entropy minus the entropy of the target distribution. The full mathematical derivation remains an open question.</p></section>
+      <section class="course-mapping" aria-labelledby="perspective-title" data-learning-scope>
+        <div class="page-frame course-mapping__inner">
+          <div class="section-heading section-heading--inverse"><h2 id="perspective-title">Implementation loss meets information framing</h2></div>
+          <div class="perspective-switcher" data-learning-switcher data-url-key="view" data-default-value="integrated" aria-label="Choose a course perspective"><button type="button" data-switch-target="integrated">Integrated</button><button type="button" data-switch-target="ai-programming">AI Programming</button><button type="button" data-switch-target="taica">TAICA Generative AI</button></div>
+          <div class="perspective-panel" data-switch-panel="integrated"><strong>One canonical loss concept</strong><p>Classification implementation and probability/information framing form a theory ↔ practice relationship.</p></div>
+          <div class="perspective-panel" data-switch-panel="ai-programming"><strong>Classification implementation</strong><p>Connects binary and categorical Cross Entropy losses to model compilation and classification training workflows.</p></div>
+          <div class="perspective-panel" data-switch-panel="taica"><strong>Probability and information</strong><p>Compares a target distribution with a model distribution and applies the loss to next-token prediction.</p></div>
+          <p id="perspective-caption" class="perspective-caption">Switching views changes the evidence lens, not the canonical concept.</p>
+          <div class="context-switch" data-learning-scope>
+            <div class="context-switch__controls" data-learning-switcher data-url-key="context" data-default-value="classification" aria-label="Choose an application context"><button type="button" data-switch-target="classification">Classification</button><button type="button" data-switch-target="language-model">Language Model</button></div>
+            <div class="context-panel" data-switch-panel="classification"><strong>Classification</strong><span>Cross Entropy is configured as the classification loss in the recorded Keras workflow.</span></div>
+            <div class="context-panel" data-switch-panel="language-model"><strong>Language Model</strong><span>Cross Entropy compares the target next-token distribution with the model distribution during training.</span></div>
+          </div>
+        </div>
+      </section>
 
-      <section class="perspective-section section-field section-field--dark" aria-labelledby="perspective-title"><div class="page-frame"><div class="detail-heading detail-heading--inverse"><h2 id="perspective-title">Cross-course perspectives</h2><p>實作中的 classification loss，與 probability / information framework 中的同一個 loss。</p></div><figure class="perspective-merge" aria-labelledby="perspective-caption"><div class="perspective-source"><span class="component-label">人工智慧程式設計</span><h3>Classification-loss implementation</h3><ul><li><code>binary_crossentropy</code> in mushroom binary classification</li><li>categorical cross-entropy for multi-class tasks such as MNIST</li><li>loss connected to Keras <code>compile()</code> and the repeated training cycle</li></ul></div><div class="perspective-junction"><span class="relationship-label">theory ↔ practice</span><strong>Cross Entropy</strong><span>one canonical concept</span></div><div class="perspective-source perspective-source--blush"><span class="component-label">TAICA 生成式 AI</span><h3>Distribution and information framing</h3><ul><li>placed with Information, Entropy, KL Divergence, and Hard / Soft Targets</li><li>next-token prediction → correct-token comparison → cross-entropy loss</li><li>loss precedes backpropagation and parameter updates</li></ul></div><figcaption id="perspective-caption">Both courses use Cross Entropy to penalize a model distribution that assigns insufficient probability to the target. The contributions are complementary, not separate Cross Entropy concepts.</figcaption></figure><div class="source-comparison" role="group" aria-label="Source perspective comparison"><div><strong>AI Programming</strong><span>Choosing and using classification loss in an implementation workflow</span></div><div><strong>TAICA</strong><span>Probability / information framing and language-model training</span></div></div></div></section>
+      <section class="supported-open page-frame" aria-labelledby="supported-title">
+        <div class="section-heading"><h2 id="supported-title">What is supported, and what stays open</h2></div>
+        <div class="supported-open__grid">
+          <div class="supported-open__column supported-open__column--supported">
+            <h3>Supported in the system</h3>
+            <ul>
+              <li>Low probability on the correct target produces a larger loss.</li>
+              <li>As Q becomes closer to P, recorded notes say Cross Entropy becomes smaller and KL divergence also becomes smaller.</li>
+              <li>The loss supplies a signal used during parameter learning.</li>
+            </ul>
+          </div>
+          <div class="supported-open__column supported-open__column--open">
+            <h3>Still unresolved</h3>
+            <ul>
+              <li>The full mathematical derivation of the relationship between Cross Entropy and KL divergence.</li>
+              <li>The conditions for choosing MSE instead of Cross Entropy.</li>
+              <li>A confirmed first-principles calculation record.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-      <section class="mental-model page-frame" aria-labelledby="position-title"><div class="detail-heading"><h2 id="position-title">Where this concept sits</h2><p>概率與資訊概念支撐這個 loss，然後它進入訓練流程。</p></div><div class="mental-model__path"><div><span>Prerequisites</span><span>Probability Distribution / Information / Entropy</span><a href="softmax.html">Softmax</a></div><strong>Cross Entropy</strong><div><span>Applications</span><span>Classification</span><a href="../concepts.html#large-language-model">Language Model next-token training</a><a href="neural-network-training.html">Neural Network Training</a></div></div></section>
+      <section class="learning-record page-frame" aria-labelledby="evidence-title">
+        <div class="learning-record__quote">
+          <h2 id="evidence-title">Recorded learning evidence</h2>
+          <blockquote>“模型把正確答案的機率估得越低，Cross Entropy 越大。”</blockquote>
+          <p>The parent system labels this as <code>我的理解</code>. Explicit authorship and confirmation metadata is unavailable, so it is shown as learning evidence, not verified personal mastery.</p>
+        </div>
+        <div class="learning-record__questions">
+          <h2 id="mastery-title">Recorded, not verified</h2>
+          <p>The mastery state says <strong>可以解釋</strong>, but the parent system contains no independent assessment or confirmation history.</p>
+        </div>
+      </section>
 
-      <section class="detail-register section-field" aria-label="Relationships and examples"><div class="page-frame detail-register__inner"><div><h2>Concept relationships</h2><ul class="relation-list"><li><span class="relationship-label">prerequisite</span><span>Probability Distribution, Information, Entropy, and </span><a href="softmax.html">Softmax</a></li><li><span class="relationship-label">part-of</span><a href="neural-network-training.html">Neural Network Training</a></li><li><span class="relationship-label">cause/effect</span><span>low probability for the correct target produces a larger loss</span></li><li><span class="relationship-label">application</span><span>binary and multi-class Classification</span></li><li><span class="relationship-label">application</span><a href="../concepts.html#large-language-model">Language Model next-token training</a></li><li><span class="relationship-label">contrast</span><span>MSE versus Cross Entropy remains an unresolved task-dependent comparison</span></li><li><span class="relationship-label">theory ↔ practice</span><span>TAICA distribution / information framing ↔ AI Programming Keras loss usage</span></li></ul></div><div><h2>Applications / examples</h2><ul class="plain-list"><li>Mushroom binary classification uses <code>binary_crossentropy</code>.</li><li>MNIST and other multi-class tasks use categorical cross-entropy-type loss.</li><li>Next-token training uses Cross Entropy before backpropagation updates language-model parameters.</li></ul></div></div></section>
+      <section class="evidence-ledger page-frame" aria-label="Sources and evidence limitations">
+        <details class="evidence-ledger__details">
+          <summary>Sources and evidence limits</summary>
+          <div class="evidence-ledger__grid">
+            <div><h2>Source ledger</h2><p><code>Cross Entropy.md</code></p><ul><li>人工智慧程式設計: classification-loss implementation</li><li>TAICA 生成式 AI: probability/information framing and language-model training</li></ul></div>
+            <div><h2>Evidence limits</h2><ul><li>The parent system explicitly leaves the full KL derivation unresolved.</li><li>MSE comparison remains an open question.</li><li>Recorded mastery and first-person-labelled material lack confirmation metadata.</li></ul></div>
+          </div>
+        </details>
+      </section>
 
-      <section class="learning-evidence page-frame" aria-labelledby="evidence-title"><div><h2 id="evidence-title">Recorded learning evidence</h2><p class="learning-evidence__quote">Cross Entropy 衡量用模型的 distribution Q 描述真實 distribution P 的代價。在分類任務中，若正確類別被模型給予很低機率，loss 會很大。</p></div><p class="learning-evidence__limit">The canonical file also records first-person-labeled use of binary and categorical cross-entropy in classroom classification examples. Authorship and confirmation metadata is not stored.</p></section>
-
-      <section class="mastery-section section-field section-field--dark" aria-labelledby="mastery-title"><div class="page-frame mastery-section__inner"><h2 id="mastery-title">Recorded mastery</h2><div><p class="mastery-section__state"><span aria-hidden="true">🟨</span> 可以解釋</p><!-- taste-skill-ignore: project mastery state --><p>This status exists in the current knowledge system, but no formal confirmation date or validation record is stored. It is not independently verified mastery.</p><p>The full mathematical derivation and the task-dependent choice between MSE and Cross Entropy remain unresolved.</p></div></div></section>
-
-      <section class="evidence-ledger page-frame" aria-label="Sources and evidence limitations"><div><h2>Sources</h2><h3>Canonical concept file</h3><p><code>Cross Entropy.md</code></p><h3>Course/source material</h3><ul class="plain-list"><li>人工智慧程式設計 course index</li><li>人工智慧程式設計: <code>多層感知器的學習、訓練與驗證流程</code></li><li>TAICA 生成式 AI Week 3: <code>GAN to LLM</code></li><li>TAICA 生成式 AI Week 4: <code>LLM and Transformer</code></li></ul></div><div><h2>Evidence limitations</h2><ul class="plain-list"><li>Recorded mastery has no formal confirmation history.</li><li>First-person-labeled explanation and implementation statements have no authorship or approval metadata.</li><li>TAICA Week 3 explicitly records the full mathematical relationship among Information, Entropy, Cross Entropy, and KL Divergence as still needing clarification.</li><li>The AI Programming MLP note names the mushroom and MNIST tasks, while the precise binary / categorical loss attribution is recorded chiefly in the canonical concept file.</li><li>Some relationship types are formalized from existing prose; no separately confirmed graph-edge record is stored.</li></ul></div></section>
+      <section class="explore-next"><div class="page-frame explore-next__inner"><div><h2>Explore next</h2><p>Trace the loss back into training or outward into language modelling.</p></div><nav class="explore-next__links" aria-label="Related concepts"><a href="../concepts.html#concept-loss-function">Loss Function</a><a href="neural-network-training.html">Neural Network Training</a><a href="../concepts.html#concept-language-model">Language Model</a><a href="../concepts.html">Back to Explorer</a></nav></div></section>
     </main>
 
-    <footer class="site-footer"><div class="page-frame site-footer__inner"><div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div><nav class="site-footer__nav" aria-label="頁尾導覽"><a href="../index.html">首頁</a><a href="../concepts.html">Concepts</a><a href="../index.html#agents">About / AGENTS</a></nav><p>Presentation layer · Canonical source remains read-only.</p></div></footer>
+    <footer class="site-footer"><div class="page-frame site-footer__inner"><div class="site-footer__identity" aria-hidden="true"><span class="merge-mark merge-mark--footer"><span class="merge-mark__source merge-mark__source--top"></span><span class="merge-mark__source merge-mark__source--bottom"></span><span class="merge-mark__junction"></span><span class="merge-mark__node"></span></span><span>AI Knowledge System</span></div><nav class="site-footer__nav" aria-label="頁尾導覽"><a href="../index.html">Home</a><a href="../concepts.html">Knowledge Explorer</a><a href="../index.html#agents">System rules</a></nav><p>Presentation layer. Canonical source remains read-only.</p></div></footer>
   </body>
 </html>

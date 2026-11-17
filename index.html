@@ -8,6 +8,7 @@
       content="以 canonical concepts 整合多門 AI 課程的 AI Knowledge System Week 9 prototype。"
     >
     <meta name="theme-color" content="#f7f3f0">
+    <link rel="icon" href="data:,">
     <title>AI Knowledge System · Week 9 Prototype</title>
     <link rel="preconnect" href="https://api.fontshare.com">
     <link
@@ -16,7 +17,7 @@
     >
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
-  <body id="top">
+  <body id="top" class="home-page">
     <a class="skip-link" href="#main-content">跳到主要內容</a>
 
     <header class="site-header">
@@ -31,383 +32,134 @@
           <span>AI Knowledge System</span>
         </a>
         <div class="site-nav__links">
-          <a aria-current="page" href="index.html">首頁</a>
-          <a href="concepts.html">Concepts</a>
-          <a href="#agents">About / AGENTS</a>
+          <a aria-current="page" href="index.html">Home</a>
+          <a href="concepts.html" aria-label="Knowledge Explorer">
+            <span class="nav-label-long">Knowledge Explorer</span>
+            <span class="nav-label-short" aria-hidden="true">Explorer</span>
+          </a>
+          <a href="#agents">System rules</a>
         </div>
       </nav>
     </header>
 
     <main id="main-content">
-      <section class="hero page-frame" aria-labelledby="hero-title">
-        <div class="hero__copy">
-          <h1 id="hero-title" class="hero__title">
-            <span>AI Knowledge</span>
-            <span>System</span>
-          </h1>
-          <p class="hero__lead" lang="en">
-            Building one connected mental model across multiple AI courses.
-          </p>
-          <blockquote class="hero__principle" lang="en">
-            Courses are knowledge sources, not the final knowledge structure.
-          </blockquote>
-          <p class="hero__intro">
-            這是一個以概念為核心的知識系統：保留每門課的來源脈絡，同時把重疊與互補的內容整合到同一個 canonical concept。
-          </p>
-          <a class="primary-action" href="concepts.html">探索 Concepts</a>
+      <section class="home-hero page-frame" aria-labelledby="hero-title">
+        <div class="home-hero__copy">
+          <h1 id="hero-title">AI Knowledge System</h1>
+          <p class="home-hero__lead">Courses contribute evidence. Canonical concepts connect it.</p>
+          <a class="primary-action" href="concepts.html">Explore the Knowledge System</a>
         </div>
 
-        <figure class="hero-merge" aria-labelledby="hero-merge-caption">
-          <div class="hero-merge__sources">
-            <div class="source-node source-node--compact">
-              <span class="component-label">Course source</span>
+        <figure class="merge-proof merge-proof--hero" aria-labelledby="hero-proof-caption">
+          <div class="merge-proof__sources">
+            <a class="source-contribution" href="#softmax-canonical">
+              <span class="source-contribution__role">Course source</span>
               <strong>人工智慧程式設計</strong>
-              <span>Classification</span>
-            </div>
-            <div class="source-node source-node--compact source-node--blush">
-              <span class="component-label">Course source</span>
+              <span>Classification output</span>
+            </a>
+            <a class="source-contribution source-contribution--blush" href="#softmax-canonical">
+              <span class="source-contribution__role">Course source</span>
               <strong>TAICA 生成式 AI</strong>
-              <span>Next-token generation</span>
-            </div>
+              <span>Next-token distribution</span>
+            </a>
           </div>
-          <div class="merge-junction merge-junction--hero" aria-hidden="true">
-            <span></span>
-          </div>
-          <div class="concept-node concept-node--hero">
-            <span class="component-label">Canonical concept</span>
+          <div class="merge-proof__junction" aria-hidden="true"></div>
+          <div id="softmax-canonical" class="canonical-node" tabindex="-1">
+            <span>Canonical concept</span>
             <strong>Softmax</strong>
-            <span>one node</span>
+            <small>one node</small>
           </div>
-          <figcaption id="hero-merge-caption">
-            兩個課程來源，匯入同一個 canonical concept。
+          <figcaption id="hero-proof-caption">
+            Two course contributions meet in one canonical concept.
           </figcaption>
         </figure>
       </section>
 
-      <section class="structure-section section-field" aria-labelledby="structure-title">
-        <div class="page-frame">
-          <div class="section-heading section-heading--split">
-            <h2 id="structure-title">從課程資料夾<br>轉向概念網絡</h2>
+      <section id="softmax" class="home-proof section-field" aria-labelledby="proof-title">
+        <div class="page-frame home-proof__layout">
+          <div class="home-proof__heading">
+            <h2 id="proof-title">One mechanism, two applications</h2>
             <p>
-              只按課程分開保存，來源清楚，卻不容易看見跨課程重疊、先備關係與應用連結。系統保留來源，同時讓知識按概念匯合。
+              Courses are knowledge sources, not the final knowledge structure.
+              Softmax keeps one identity while each course contributes a different use.
             </p>
           </div>
 
-          <figure class="structure-contrast" aria-labelledby="structure-caption">
-            <div class="isolated-model">
-              <h3>分開的課程筆記</h3>
-              <div class="isolated-model__rows">
-                <div><span>Course A</span><strong>isolated notes</strong></div>
-                <div><span>Course B</span><strong>isolated notes</strong></div>
-                <div><span>Course C</span><strong>isolated notes</strong></div>
+          <figure class="application-fork" aria-labelledby="application-caption">
+            <div class="application-fork__mechanism">
+              <span>Scores</span>
+              <span class="relationship-label">cause/effect</span>
+              <strong>Softmax</strong>
+              <span class="relationship-label">produces</span>
+              <span>Relative distribution</span>
+            </div>
+            <div class="application-fork__paths">
+              <div>
+                <span class="source-name">人工智慧程式設計</span>
+                <strong>Argmax for classification</strong>
+                <span class="relationship-label">application</span>
+              </div>
+              <div>
+                <span class="source-name wordmark">TAICA 生成式 AI</span>
+                <strong>Sampling for generation</strong>
+                <span class="relationship-label">application</span>
               </div>
             </div>
-
-            <div class="contrast-shift" aria-hidden="true">
-              <span>instead</span>
-              <strong>→</strong>
-            </div>
-
-            <div class="connected-model">
-              <h3>共享的 canonical concepts</h3>
-              <div class="connected-model__diagram">
-                <div class="connected-model__sources">
-                  <span>Course A</span>
-                  <span>Course B</span>
-                  <span>Course C</span>
-                </div>
-                <div class="connected-model__merge" aria-hidden="true"></div>
-                <div class="connected-model__concepts">
-                  <strong>shared concepts</strong>
-                  <span>connected mental model</span>
-                </div>
-              </div>
-            </div>
-            <figcaption id="structure-caption">
-              課程仍是 provenance；concept 才是知識網絡中的 canonical node。
+            <figcaption id="application-caption">
+              Different contributions. One canonical concept.
             </figcaption>
           </figure>
         </div>
       </section>
 
-      <section id="softmax" class="softmax-section page-frame" aria-labelledby="softmax-title">
-        <div class="section-heading section-heading--offset">
-          <h2 id="softmax-title">同一個概念，<br>多個課程視角</h2>
-          <p>
-            Softmax 是目前最清楚的跨課程示例。兩門課描述同一個 score-to-distribution 機制，但把它放在不同應用情境中。
-          </p>
-        </div>
-
-        <figure class="cross-course-comparison" aria-labelledby="softmax-caption">
-          <a class="source-node source-node--link" href="#softmax-canonical">
-            <span class="component-label">Course source</span>
-            <strong>人工智慧程式設計</strong>
-            <ul>
-              <li>classification</li>
-              <li>output activation</li>
-              <li>mutually exclusive classes</li>
-            </ul>
-            <span class="source-node__trace">追蹤到同一概念</span>
-          </a>
-
-          <a class="source-node source-node--link source-node--blush" href="#softmax-canonical">
-            <span class="component-label">Course source</span>
-            <strong>TAICA 生成式 AI</strong>
-            <ul>
-              <li>probability distribution</li>
-              <li>sampling / argmax</li>
-              <li>next-token generation</li>
-            </ul>
-            <span class="source-node__trace">追蹤到同一概念</span>
-          </a>
-
-          <div class="cross-course-comparison__junction" aria-hidden="true">
-            <span class="cross-course-comparison__line cross-course-comparison__line--left"></span>
-            <span class="cross-course-comparison__line cross-course-comparison__line--right"></span>
-            <span class="cross-course-comparison__stem"></span>
-          </div>
-
-          <div id="softmax-canonical" class="concept-node concept-node--canonical" tabindex="-1">
-            <span class="component-label">Canonical concept</span>
-            <strong>Softmax</strong>
-            <span>one concept · two applications</span>
-          </div>
-
-          <figcaption id="softmax-caption">
-            同一個 Softmax，在不同課程中出現於不同應用情境；系統將它們整合成同一個 canonical concept，而不是建立兩份課程筆記。
-          </figcaption>
-        </figure>
-      </section>
-
-      <section class="knowledge-flow-section section-field section-field--dark" aria-labelledby="flow-title">
+      <section class="understanding-gate section-field section-field--dark" aria-labelledby="gate-title">
         <div class="page-frame">
-          <div class="section-heading section-heading--split section-heading--inverse">
-            <h2 id="flow-title">理解之後，<br>才進入永久知識</h2>
-            <div>
-              <p class="flow-contrast" lang="en">AI output ≠ Permanent Knowledge</p>
-              <p>
-                AI 可以協助學習與整理，但 permanent knowledge 仍需要理解檢查與使用者確認。
-              </p>
-            </div>
+          <div class="understanding-gate__heading">
+            <h2 id="gate-title">Understanding before storage</h2>
+            <p>AI assistance can support learning, but it does not confirm permanent knowledge.</p>
           </div>
 
           <ol class="knowledge-flow" aria-label="Understanding-first knowledge workflow">
-            <li class="knowledge-flow__step">
-              <span>Source Material</span>
-            </li>
-            <li class="knowledge-flow__step">
-              <span>AI-assisted Learning</span>
-            </li>
-            <li class="knowledge-flow__step">
-              <span>Understanding Check</span>
-            </li>
-            <li class="knowledge-flow__step">
-              <span>Knowledge Intake</span>
-            </li>
-            <li class="knowledge-flow__step knowledge-flow__step--gate">
-              <span>User Confirmation</span>
-              <small>人工確認關卡</small>
-            </li>
-            <li class="knowledge-flow__step knowledge-flow__step--permanent">
-              <span>Permanent Knowledge</span>
-            </li>
+            <li>Source Material</li>
+            <li>AI-assisted Learning</li>
+            <li>Understanding Check</li>
+            <li>Knowledge Intake</li>
+            <li class="knowledge-flow__gate">User Confirmation</li>
+            <li>Permanent Knowledge</li>
           </ol>
 
-          <aside class="evidence-notice">
-            <strong>Workflow boundary</strong>
-            <p>
-              此處呈現的是系統設計流程，不代表目前每個概念都有正式的 Knowledge Intake 歷史記錄。
-            </p>
-          </aside>
+          <p class="workflow-boundary">
+            This is the governing workflow. The current prototype does not claim that every concept has a formal Knowledge Intake history.
+          </p>
         </div>
       </section>
 
-      <section class="knowledge-map-section page-frame" aria-labelledby="map-title">
-        <div class="section-heading section-heading--offset">
-          <h2 id="map-title">概念不是孤立筆記</h2>
+      <section class="explorer-invitation page-frame" aria-labelledby="explore-title">
+        <div>
+          <h2 id="explore-title">Follow the knowledge, not the course</h2>
           <p>
-            這條 focused technical chain 示範 concept-to-concept 結構。它不是跨課程證據；目前 provenance 主要來自 TAICA 生成式 AI。
+            Browse concepts, inspect prerequisites and source contributions, then continue along supported relationships.
           </p>
         </div>
-
-        <figure class="knowledge-map" aria-labelledby="map-caption">
-          <ol class="knowledge-map__chain">
-            <li>
-              <a class="concept-node concept-node--supporting" href="concepts.html#tokenization"><strong>Tokenization</strong></a>
-              <div class="relationship-edge">
-                <span class="relationship-label">prerequisite</span>
-                <span aria-hidden="true">→</span>
-              </div>
-            </li>
-            <li>
-              <a class="concept-node concept-node--supporting" href="concepts.html#embedding"><strong>Embedding</strong></a>
-              <div class="relationship-edge">
-                <span class="relationship-label">prerequisite</span>
-                <span aria-hidden="true">→</span>
-              </div>
-            </li>
-            <li>
-              <a class="concept-node concept-node--supporting" href="concepts.html#self-attention"><strong>Self-Attention</strong></a>
-              <div class="relationship-edge">
-                <span class="relationship-label">part-of</span>
-                <span aria-hidden="true">→</span>
-              </div>
-            </li>
-            <li>
-              <a class="concept-node concept-node--supporting" href="concepts.html#transformer"><strong>Transformer</strong></a>
-              <div class="relationship-edge">
-                <span class="relationship-label">prerequisite</span>
-                <span aria-hidden="true">→</span>
-              </div>
-            </li>
-            <li>
-              <a class="concept-node concept-node--supporting" href="concepts.html#large-language-model"><strong>Large Language Model</strong></a>
-            </li>
-          </ol>
-          <figcaption id="map-caption">
-            每個 supporting node 都連到 Concept Index 中的真實知識條目；箭頭表示方向，文字標籤保留 relationship type。
-          </figcaption>
-        </figure>
-      </section>
-
-      <section id="concepts" class="concepts-section section-field" aria-labelledby="concepts-title">
-        <div class="page-frame">
-          <div class="section-heading section-heading--split">
-            <h2 id="concepts-title">三個完整概念，<br>三種整合證據</h2>
-            <p>
-              這三個 presentation-layer concepts 都由現有 canonical knowledge 衍生。它們不是新的 permanent nodes；每個條目現在都有可探索的完整頁面。
-            </p>
-          </div>
-
-          <div class="concept-register" aria-label="Prototype concepts">
-            <article class="concept-card concept-card--featured">
-              <div class="concept-card__title">
-                <h3>Neural Network Training</h3>
-                <span class="availability-label">Full prototype page</span>
-              </div>
-              <p class="concept-card__definition">
-                反覆調整可學習參數，使神經網路輸出逐漸接近訓練目標的過程。
-              </p>
-              <dl class="concept-card__meta">
-                <div>
-                  <dt>Recorded mastery</dt>
-                  <dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state -->
-                </div>
-                <div>
-                  <dt>Cross-course role</dt>
-                  <dd><span class="relationship-label">theory ↔ practice</span></dd>
-                </div>
-                <div>
-                  <dt>Sources</dt>
-                  <dd class="source-badges">
-                    <span class="source-badge">人工智慧程式設計</span>
-                    <span class="source-badge source-badge--blush">TAICA 生成式 AI</span>
-                  </dd>
-                </div>
-              </dl>
-              <a class="concept-card__link" href="concepts/neural-network-training.html">View concept →</a>
-            </article>
-
-            <article class="concept-card concept-card--offset-right">
-              <div class="concept-card__title">
-                <h3>Softmax</h3>
-                <span class="availability-label">Full prototype page</span>
-              </div>
-              <p class="concept-card__definition">
-                將多個 scores 轉換為總和為 1 的相對分布，並出現在 classification 與 next-token generation 等不同應用。
-              </p>
-              <dl class="concept-card__meta">
-                <div>
-                  <dt>Recorded mastery</dt>
-                  <dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state -->
-                </div>
-                <div>
-                  <dt>Cross-course role</dt>
-                  <dd><span class="relationship-label">application</span></dd>
-                </div>
-                <div>
-                  <dt>Sources</dt>
-                  <dd class="source-badges">
-                    <span class="source-badge">人工智慧程式設計</span>
-                    <span class="source-badge source-badge--blush">TAICA 生成式 AI</span>
-                  </dd>
-                </div>
-              </dl>
-              <a class="concept-card__link" href="concepts/softmax.html">View concept →</a>
-            </article>
-
-            <article class="concept-card concept-card--offset-left">
-              <div class="concept-card__title">
-                <h3>Cross Entropy</h3>
-                <span class="availability-label">Full prototype page</span>
-              </div>
-              <p class="concept-card__definition">
-                衡量使用模型 distribution 描述目標 distribution 的代價；正確答案獲得低機率時，loss 會更大。
-              </p>
-              <dl class="concept-card__meta">
-                <div>
-                  <dt>Recorded mastery</dt>
-                  <dd class="mastery-label"><span aria-hidden="true">🟨</span> 可以解釋</dd><!-- taste-skill-ignore: project mastery state -->
-                </div>
-                <div>
-                  <dt>Cross-course role</dt>
-                  <dd><span class="relationship-label">theory ↔ practice</span></dd>
-                </div>
-                <div>
-                  <dt>Sources</dt>
-                  <dd class="source-badges">
-                    <span class="source-badge">人工智慧程式設計</span>
-                    <span class="source-badge source-badge--blush">TAICA 生成式 AI</span>
-                  </dd>
-                </div>
-              </dl>
-              <a class="concept-card__link" href="concepts/cross-entropy.html">View concept →</a>
-            </article>
-          </div>
-
-          <p class="mastery-disclaimer">
-            Recorded mastery 是現有系統中的記錄狀態，沒有 formal confirmation date 或 validation record，不能視為 independently verified mastery。
-          </p>
+        <div class="explorer-invitation__paths" aria-label="Explorer paths">
+          <p><strong>Training path</strong><span><a href="concepts.html#concept-loss-function">Loss Function</a> → Neural Network Training → parameter learning</span></p>
+          <p><strong>Language-model foundations</strong><span><a href="concepts.html#tokenization">Tokenization</a> → <a href="concepts.html#embedding">Embedding</a> → <a href="concepts.html#self-attention">Self-Attention</a> → <a href="concepts.html#transformer">Transformer</a> → <a href="concepts.html#large-language-model">Large Language Model</a></span></p>
+          <p><strong>Cross-course proof</strong><span><a href="concepts.html#softmax">Softmax</a> connects classification and generation without becoming two nodes.</span></p>
         </div>
+        <a class="primary-action" href="concepts.html">Open Knowledge Explorer</a>
       </section>
 
-      <section id="agents" class="agents-section section-field section-field--dark" aria-labelledby="agents-title">
-        <div class="page-frame agents-section__layout">
+      <section id="agents" class="system-rules section-field" aria-labelledby="agents-title">
+        <div class="page-frame system-rules__layout">
           <div>
-            <h2 id="agents-title">讓規則跟著專案走</h2>
-            <p class="agents-section__statement">
-              <code>AGENTS.md</code> 是未來 AI agents 的 project manual。
-            </p>
+            <h2 id="agents-title">Rules that keep the system honest</h2>
+            <p><code>AGENTS.md</code> carries the governance boundary into future work.</p>
           </div>
-          <div class="agents-section__body">
-            <p>
-              它定義 canonical concepts、provenance、mastery、relationships、page structure 與修改邊界，讓新的 agent 即使沒有前次對話，也能沿用相同原則。
-            </p>
-            <ul class="rule-list">
-              <li>一個 concept，只保留一個 canonical node</li>
-              <li>來源、限制與不確定性必須可見</li>
-              <li>沒有使用者確認，不進入 permanent knowledge</li>
-              <li>relationships 必須有證據與明確類型</li>
-              <li>未來頁面沿用同一組內容與視覺結構</li>
-            </ul>
-            <blockquote>
-              目標不是要求 AI 只做一次網站。目標是讓未來的 AI agents 能一致地延續這個系統。
-            </blockquote>
-            <div class="agent-proof" aria-label="AGENTS.md behavior example">
-              <p><strong>Future agent task</strong></p>
-              <p class="agent-proof__task">“Add a new confirmed concept: Embedding”</p>
-              <p><code>AGENTS.md</code> tells the agent to:</p>
-              <ol>
-                <li>check whether a canonical node already exists</li>
-                <li>use confirmed knowledge only</li>
-                <li>preserve provenance</li>
-                <li>use typed relationships</li>
-                <li>update the Concept Index and knowledge map</li>
-                <li>preserve the shared visual structure</li>
-              </ol>
-              <small>這是未來任務範例，不表示該任務已執行。</small>
-            </div>
-          </div>
+          <ul class="rule-list">
+            <li><strong>One concept, one canonical node.</strong><span>Courses remain provenance, not knowledge categories.</span></li>
+            <li><strong>Understanding is not inferred.</strong><span>Recorded mastery is visible but not independently verified.</span></li>
+            <li><strong>Evidence stays attached.</strong><span>Unsupported relationships and first-person explanations are never invented.</span></li>
+          </ul>
         </div>
       </section>
     </main>
@@ -424,11 +176,11 @@
           <span>AI Knowledge System</span>
         </div>
         <nav class="site-footer__nav" aria-label="頁尾導覽">
-          <a href="index.html">首頁</a>
-          <a href="concepts.html">Concepts</a>
-          <a href="index.html#agents">About / AGENTS</a>
+          <a href="index.html">Home</a>
+          <a href="concepts.html">Knowledge Explorer</a>
+          <a href="#agents">System rules</a>
         </nav>
-        <p>Week 9 presentation prototype · Parent knowledge system remains read-only.</p>
+        <p>Presentation layer. Canonical knowledge remains read-only.</p>
       </div>
     </footer>
   </body>
