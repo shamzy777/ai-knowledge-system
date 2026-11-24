@@ -1,0 +1,32 @@
+source_id: S07
+run_id: RUN-003
+title: "AI程式設計-筆記10/6.jpg"
+source_type: Course Material
+language: "Traditional Chinese with English technical terms; handwritten"
+drive:
+  file_id: "1TVWDShdxjapq48WR24BvJO4V9Jz_CNO-"
+  url: "https://drive.google.com/file/d/1TVWDShdxjapq48WR24BvJO4V9Jz_CNO-/view?usp=drivesdk"
+  mime_type: "image/jpeg"
+  size_bytes: 500842
+  created_at: "2026-10-08T08:14:41.331Z"
+  modified_at: "2026-10-08T08:24:05.629Z"
+  parent_folder_id: "1gvYVhkDlvB3EfeGf4Fjc99qXFr2MlskD"
+local_copy:
+  path: "sources/inbox/S07__AI程式設計-筆記10-6.jpg"
+  sha256: "2fe559964a9d56478860d1c3eccc1e6988a0259e545950b079bb22dddc4f6d3c"
+image:
+  width_px: 1668
+  height_px: 2157
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  claims: "staging/ingests/RUN-003-S07-claims.md"
+verification:
+  drive_metadata_verified: true
+  full_image_download_verified: true
+  visually_checked: true
+  uncertainty: "Handwriting uncertainty preserved; optimizer-family shorthand is not promoted as a universal rule."
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false

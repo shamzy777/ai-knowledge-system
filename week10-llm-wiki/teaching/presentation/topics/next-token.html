@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="跟著同一句文字，探索 LLM 如何一步一步產生下一個 token。">
+  <title>Topic 01｜LLM 是怎麼產生下一個 token 的？</title>
+  <link rel="stylesheet" href="../topic.css">
+  <script>document.documentElement.className = 'js';</script>
+  <script src="../topic.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#topic-intro">跳到主題介紹</a>
+
+  <header class="topic-site-header" aria-label="主題導覽">
+    <nav class="topic-breadcrumb" aria-label="目前位置">
+      <a href="../index.html">AI Knowledge Lab</a>
+      <span aria-hidden="true">/</span>
+      <span>Topic 01</span>
+      <span aria-hidden="true">/</span>
+      <span>下一個 token</span>
+    </nav>
+    <a class="return-home" href="../index.html">返回首頁</a>
+  </header>
+
+  <section class="topic-intro" id="topic-intro" aria-labelledby="topic-title">
+    <div class="topic-intro-copy">
+      <h1 id="topic-title"><span>LLM 如何產生</span><span>下一個 token？</span></h1>
+      <p class="topic-intro-lead">完成這個主題後，你應該能自己解釋：一段文字如何經過 Tokenization（詞元化）、Embedding（嵌入表示）、Self-Attention（自注意力）、Transformer、Softmax 與 Sampling（取樣），逐步產生下一個 token。</p>
+      <a class="primary-action motif-button" href="#s1">開始探索</a>
+    </div>
+    <dl class="topic-intro-meta" data-ui>
+      <div><dt>要解決的問題</dt><dd>模型如何從目前文字決定下一個 token？</dd></div>
+      <div><dt>學習時間</dt><dd>約 10–15 分鐘</dd></div>
+      <div><dt>適合程度</dt><dd>初階</dd></div>
+      <div><dt>前置知識</dt><dd>無特定要求；術語會在流程中逐步說明。</dd></div>
+    </dl>
+  </section>
+
+  <header class="learning-rail" aria-label="學習路徑">
+    <div class="rail-top">
+      <a class="wordmark" href="#topic-intro">Topic 01</a>
+      <span id="slide-progress" aria-live="polite">第 1 / 11 段</span>
+      <a class="quiz-link" href="#quiz">理解檢查</a>
+    </div>
+    <nav class="pipeline-nav" aria-label="下一個 token 的產生流程">
+      <a href="#s1" data-pipeline-stage="text"><span>文字</span></a>
+      <a href="#s2" data-pipeline-stage="tokenization"><span>詞元 Tokens</span></a>
+      <a href="#s3" data-pipeline-stage="representation"><span>表示<br>Representation</span></a>
+      <a href="#s4" data-pipeline-stage="context"><span>上下文<br>Context</span></a>
+      <a href="#s7" data-pipeline-stage="transformer"><span>Transformer</span></a>
+      <a href="#s8" data-pipeline-stage="prediction"><span>預測<br>Prediction</span></a>
+      <a href="#s9" data-pipeline-stage="softmax"><span>機率<br>Probability</span></a>
+      <a href="#s10" data-pipeline-stage="sampling"><span>選擇<br>Selection</span></a>
+      <a href="#s11" data-pipeline-stage="repeat"><span>重複<br>Repeat</span></a>
+    </nav>
+  </header>
+
+  <main id="deck">
+    <section class="slide story-section challenge" id="s1" data-slide data-stage="text" data-title="核心問題" aria-labelledby="s1-title">
+      <div class="story-grid hero-grid">
+        <div class="hero-copy">
+          <h2 id="s1-title"><span>LLM 怎麼產生</span><span>下一個 token？</span></h2>
+          <p class="chinese-title">從同一句文字出發，走完預測與選擇的完整循環。</p>
+          <p class="lead">先看問題，再逐步打開模型內部的路徑。</p>
+          <button class="primary-action motif-button" id="hero-generate" type="button">展開產生流程</button>
+          <p class="interaction-result" id="hero-status" aria-live="polite">先看問題，再逐步打開模型內部的路徑。</p>
+        </div>
+
+        <div class="hero-object" data-ui aria-label="貫穿主題的示例句">
+          <p class="sentence-label">目前的 Context（上下文）</p>
+          <div class="sentence sentence-large" data-sentence>
+            <span>The</span><span>cat</span><span>sat</span><span>on</span><span>the</span><span>mat</span><span>because</span><span>it</span><span>was</span><span class="token-hole">[ ? ]</span>
+          </div>
+          <p class="hero-question">模型怎麼決定接下來是什麼？</p>
+          <div class="hero-map" id="hero-map" aria-label="高層次流程">
+            <span>文字</span><span>詞元 tokens</span><span>向量</span><span>上下文</span><span>分數</span><span>機率</span><span>選擇</span>
+          </div>
+        </div>
+      </div>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/language-model.md">Language Model（語言模型）</a>
+        <a href="../../../wiki/concepts/large-language-model.md">Large Language Model（大型語言模型）</a>
+        <a href="../../../wiki/concepts/inference.md">Inference（推論）</a>
+        <a href="../../../wiki/concepts/sampling.md">Sampling（取樣）</a>
+        <details><summary>來源與範圍</summary><p>S03/S04 · Course Material<br>S09 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section tokens-section" id="s2" data-slide data-stage="tokenization" data-title="How text enters" aria-labelledby="s2-title">
+      <div class="story-heading">
+        <h2 id="s2-title">文字怎麼進入模型？</h2>
+        <p class="problem">我們只有原始文字。模型還需要能夠表示與預測的離散單位。</p>
+      </div>
+      <div class="tokenizer-lab" data-ui>
+        <div class="raw-sentence">
+          <span>原始文字 Raw text</span>
+          <strong>The cat sat on the mat because it was [ ? ]</strong>
+        </div>
+        <button class="mechanism-action motif-button" id="tokenize-button" type="button">進行 Tokenization（詞元化）</button>
+        <div class="token-stream" id="token-stream" aria-label="示意 token 序列">
+          <button type="button" class="token-chip">The</button><button type="button" class="token-chip">cat</button><button type="button" class="token-chip">sat</button><button type="button" class="token-chip">on</button><button type="button" class="token-chip">the</button><button type="button" class="token-chip">mat</button><button type="button" class="token-chip">because</button><button type="button" class="token-chip">it</button><button type="button" class="token-chip">was</button><span class="token-chip token-hole">[ ? ]</span>
+        </div>
+        <p class="scope-note">這裡的 token 邊界只用來示意，不宣稱是特定 tokenizer 的實際輸出。</p>
+      </div>
+      <p class="bridge">現在有了 tokens。Neural Network（神經網路）要怎麼對它們進行計算？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/tokenization.md">Tokenization（詞元化）</a>
+        <details><summary>來源與範圍</summary><p>S09 book pp. 33–47, 203 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section representation-section" id="s3" data-slide data-stage="representation" data-title="Making tokens computable" aria-labelledby="s3-title">
+      <div class="story-heading">
+        <h2 id="s3-title">token 怎麼變成向量？</h2>
+        <p class="problem">沿著同一個 token，看它如何從離散符號逐步成為可運算的 learned dense vector（學習所得稠密向量）。</p>
+      </div>
+      <div class="representation-lab" data-mechanism-ui data-embedding-step="1">
+        <div class="token-picker" aria-label="選擇要觀察的 token">
+          <button type="button" data-embed-token="cat">cat</button>
+          <button type="button" data-embed-token="mat">mat</button>
+          <button type="button" data-embed-token="it" aria-pressed="true">it</button>
+        </div>
+        <div class="mechanism-step-tabs" role="group" aria-label="token 轉換步驟">
+          <button type="button" data-embedding-step="1" aria-pressed="true">1｜離散 token</button>
+          <button type="button" data-embedding-step="2">2｜token identity（詞元身分）</button>
+          <button type="button" data-embedding-step="3">3｜Embedding lookup（嵌入查找）</button>
+          <button type="button" data-embedding-step="4">4｜向量表示</button>
+        </div>
+        <ol class="embedding-transform" aria-live="polite">
+          <li data-embed-stage="1"><span class="mechanism-label">輸入</span><strong data-embedding-token>it</strong><p>目前仍是 vocabulary 中的一個離散 token。</p></li>
+          <li data-embed-stage="2"><span class="mechanism-label">辨識身分</span><strong><span data-embedding-token>it</span> 的 token identity</strong><p>模型先以離散身分區分這個 token；這不是手寫的語意標籤。</p></li>
+          <li data-embed-stage="3"><span class="mechanism-label">查找學習所得表示</span><strong>Embedding lookup</strong><p>Embedding layer 取出訓練中學得的 dense representation。</p></li>
+          <li data-embed-stage="4"><span class="mechanism-label">輸出</span><strong>Embedding vector</strong><div class="vector-cells" aria-label="抽象化的學習所得稠密向量"><i></i><i></i><i></i><i></i><i></i><i></i></div><p>這些長條只表示多個向量維度，不是實際數值，也不是人工命名的特徵。</p></li>
+        </ol>
+        <div class="position-combine">
+          <div class="embedding-output-lane">
+            <h3>Token Embedding（詞元嵌入）</h3>
+            <span>token 是什麼</span>
+          </div>
+          <span class="combine-sign" aria-hidden="true">+</span>
+          <div class="position-lane">
+            <h3>Positional Information（位置資訊）</h3>
+            <div class="position-sequence"><span>6</span><span>7</span><span class="is-position">8</span><span>9</span></div>
+            <p>token 在序列中的位置；它和 Embedding 是不同機制。</p>
+          </div>
+          <span class="combine-sign" aria-hidden="true">↓</span>
+          <div class="representation-join"><strong>Transformer input representation</strong><span>兩種資訊在這裡結合，但不是同一種機制</span></div>
+        </div>
+        <div class="micro-checkpoint" data-checkpoint="embedding">
+          <h3>小確認｜現在 <span data-embedding-token>it</span> 已經變成什麼形式？</h3>
+          <div><button type="button" data-checkpoint-answer="wrong">人工寫下的語意標籤</button><button type="button" data-checkpoint-answer="correct">可運算的 learned dense vector</button></div>
+          <p class="checkpoint-feedback" aria-live="polite">選一個答案，確認再往下走。</p>
+          <p class="checkpoint-fallback">答案：可運算的 learned dense vector；位置資訊仍由另一個機制提供。</p>
+        </div>
+      </div>
+      <p class="bridge">有了向量之後，為什麼還需要 Context（上下文）？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/embedding.md">Embedding（嵌入表示）</a>
+        <a href="../../../wiki/concepts/positional-encoding.md">Positional Encoding（位置編碼）</a>
+        <details><summary>來源與範圍</summary><p>S04 · Course Material<br>S08 pp. 5–6 · Research Paper<br>S09 book pp. 11, 127–148, 177–195 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section context-section" id="s4" data-slide data-stage="context" data-title="Creating the need for context" aria-labelledby="s4-title">
+      <div class="story-heading">
+        <h2 id="s4-title">為什麼一個 token 還不夠？</h2>
+        <p class="problem">「it」有自己的 token 身分，但它真正有用的表示仍取決於周圍文字。</p>
+      </div>
+      <div class="context-lab" data-ui>
+        <p class="lab-question">理解「it」時，前面哪些 token 可能最重要？</p>
+        <div class="context-sentence" id="context-sentence">
+          <button type="button" data-context-choice="cat">The <b>cat</b></button>
+          <span>sat on</span>
+          <button type="button" data-context-choice="mat">the <b>mat</b></button>
+          <span>because</span>
+          <strong class="context-focus">it</strong>
+          <span>was [ ? ]</span>
+        </div>
+        <div class="context-connection" id="context-connection" aria-live="polite">選擇「cat」或「mat」，提出一個關聯性假設。</div>
+        <p class="scope-note">你的點選只是人類假設。Self-Attention（自注意力）實際計算的是不同位置之間的數值關係。</p>
+      </div>
+      <p class="bridge">模型要怎麼判斷其他哪些 token 與目前位置有關？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/embedding.md">Embedding（嵌入表示）</a>
+        <a href="../../../wiki/concepts/self-attention.md">Self-Attention（自注意力）</a>
+        <details><summary>來源與範圍</summary><p>S04 · Course Material<br>S08 · Research Paper<br>S09 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section qkv-section" id="s5" data-slide data-stage="context" data-title="Q K V roles" aria-labelledby="s5-title">
+      <div class="story-heading">
+        <h2 id="s5-title">Q、K、V 各自做什麼？</h2>
+        <p class="problem">我們固定更新「it」的表示，逐步分開「如何決定相關性」與「要組合什麼資訊」。</p>
+      </div>
+      <div class="qkv-lab" id="qkv-demo" data-mechanism-ui data-qkv-step="1">
+        <div class="mechanism-step-tabs" role="group" aria-label="Q K V 機制步驟">
+          <button type="button" data-qkv-step="1" aria-pressed="true">A｜目標 token</button>
+          <button type="button" data-qkv-step="2">B｜Query</button>
+          <button type="button" data-qkv-step="3">C｜Keys</button>
+          <button type="button" data-qkv-step="4">D｜比較分數</button>
+          <button type="button" data-qkv-step="5">E｜Values</button>
+        </div>
+        <div class="qkv-stage">
+          <div class="qkv-sentence" aria-label="固定以 it 為更新目標">
+            <span>The</span><span>cat</span><span>sat</span><span>on</span><span>the</span><span>mat</span><span>because</span><span class="qkv-focus-token">it<small>更新目標</small></span><span>was</span>
+          </div>
+          <div class="qkv-mechanism" aria-live="polite">
+            <div data-qkv-panel="1"><span class="mechanism-label">Step A｜輸入</span><strong>更新「it」的表示</strong><p>後面的比較都以這個位置的表示為起點。</p></div>
+            <div data-qkv-panel="2"><span class="mechanism-label">Step B</span><strong>Query（查詢）of「it」</strong><p>「it」的表示經 learned projection 形成 Query。這是數值比較角色，不是字面上的自然語言問題。</p></div>
+            <div data-qkv-panel="3"><span class="mechanism-label">Step C</span><strong>可見位置提供 Keys（鍵）</strong><div class="key-bank"><span>cat Key</span><span>mat Key</span><span>because Key</span><span>…</span></div><p>目標 Query 會和這些 Keys 分別比較。</p></div>
+            <div data-qkv-panel="4"><span class="mechanism-label">Step D｜中間結果</span><strong>Query × Keys → relevance scores</strong><div class="score-slots"><span>Q·K<sub>cat</sub></span><span>Q·K<sub>mat</sub></span><span>Q·K<sub>because</sub></span></div><p>這裡只表示會得到比較分數，不虛構實際數值或語意排名。</p></div>
+            <div data-qkv-panel="5"><span class="mechanism-label">Step E｜下一步需要的資訊</span><strong>Values（值）承載要被組合的資訊</strong><p>比較分數之後會成為 weights；weights 決定從各位置的 Value 取多少資訊。</p></div>
+          </div>
+          <div class="qkv-distinction"><strong>Q + K</strong><span>決定相關程度</span><strong>V</strong><span>承載要組合的資訊</span></div>
+        </div>
+        <div class="micro-checkpoint" data-checkpoint="qkv">
+          <h3>小確認｜Q 和 K 決定什麼？V 又負責什麼？</h3>
+          <div><button type="button" data-checkpoint-answer="correct">Q/K 產生相關分數；V 承載被組合的資訊</button><button type="button" data-checkpoint-answer="wrong">Q/K/V 都是三種自然語言問題</button></div>
+          <p class="checkpoint-feedback" aria-live="polite">先分清比較角色與資訊角色。</p>
+          <p class="checkpoint-fallback">答案：Query 與 Keys 產生比較分數；Values 承載之後按權重組合的資訊。</p>
+        </div>
+      </div>
+      <p class="bridge">有了 Query–Key 比較分數之後，Self-Attention 怎麼把它變成更新後的表示？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/query-key-and-value.md">Query / Key / Value</a>
+        <details><summary>來源與範圍</summary><p>S04 pp. 29–31 · Course Material<br>S08 pp. 3–5 · Research Paper<br>S09 book pp. 179–184 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section attention-section" id="s6" data-slide data-stage="context" data-title="One attention operation" aria-labelledby="s6-title">
+      <div class="story-heading">
+        <h2 id="s6-title">Self-Attention 怎麼運作？</h2>
+        <p class="problem">現在有了 Q、K、V。接著要把關聯程度轉成能夠組合資訊的權重。</p>
+      </div>
+      <div class="attention-lab" id="attention-lab" data-mechanism-ui data-attention-step="1">
+        <div class="mechanism-step-tabs attention-step-tabs" role="group" aria-label="一次 Self-Attention 的六個步驟">
+          <button type="button" data-attention-step="1" aria-pressed="true">1｜選目標</button><button type="button" data-attention-step="2">2｜取得 Q/K/V</button><button type="button" data-attention-step="3">3｜Q 比較 K</button><button type="button" data-attention-step="4">4｜weights</button><button type="button" data-attention-step="5">5｜組合 V</button><button type="button" data-attention-step="6">6｜更新表示</button>
+        </div>
+        <div class="attention-before-after">
+          <div><span class="mechanism-label">Before Self-Attention</span><strong>「it」的輸入表示</strong><p>尚未完成這一次上下文更新。</p></div>
+          <div data-attention-final><span class="mechanism-label">After Self-Attention</span><strong>更新後的 contextual representation</strong><p>已由可見位置的資訊加權組合而成。</p></div>
+        </div>
+        <p class="lab-question">固定更新「it」。以下連線與長條只說明機制順序，不是量測到的模型輸出。</p>
+        <div class="attention-token-row" id="attention-token-row">
+          <span data-attention-token>The</span><span data-attention-token>cat</span><span data-attention-token>sat</span><span data-attention-token>on</span><span data-attention-token>the</span><span data-attention-token>mat</span><span data-attention-token>because</span><span data-attention-token class="is-target">it<small>target</small></span><span data-attention-token>was</span>
+          <svg id="attention-lines" aria-hidden="true"></svg>
+        </div>
+        <ol class="attention-flow">
+          <li data-attention-panel="1"><strong>選定 target「it」</strong><span>輸入：目前位置的表示</span></li>
+          <li data-attention-panel="2"><strong>取得 Q / K / V</strong><span>各位置的 learned projections</span></li>
+          <li data-attention-panel="3"><strong>Query × Keys</strong><span>得到 attention scores</span></li>
+          <li data-attention-panel="4"><strong>Attention Softmax</strong><span>scores → normalized weights</span></li>
+          <li data-attention-panel="5"><strong>Weighted Values</strong><span>weights 決定每個 Value 的貢獻</span></li>
+          <li data-attention-panel="6"><strong>Contextual Representation</strong><span id="attention-output">「it」更新後的上下文表示</span></li>
+        </ol>
+        <details class="attention-formula"><summary>完成直覺流程後，再看公式</summary><p><code>Attention(Q,K,V)=softmax(QKᵀ/√dₖ)V</code>：公式壓縮了「比較 Q/K → 正規化 weights → 組合 V」這條路徑。</p></details>
+        <div class="micro-checkpoint" data-checkpoint="attention">
+          <h3>小確認｜Self-Attention 前後，表示差在哪裡？</h3>
+          <div><button type="button" data-checkpoint-answer="wrong">輸出只是原本 token identity 的複製</button><button type="button" data-checkpoint-answer="correct">輸出已依可見位置的 Values 做上下文更新</button></div>
+          <p class="checkpoint-feedback" aria-live="polite">比較 Before 與 After。</p>
+          <p class="checkpoint-fallback">答案：輸出是依可見位置資訊更新後的 context-dependent representation。</p>
+        </div>
+      </div>
+      <p class="bridge">看完一次 Self-Attention（自注意力）運算後，它在更大的模型裡位於哪裡？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/self-attention.md">Self-Attention（自注意力）</a>
+        <a href="../../../wiki/concepts/softmax.md">Softmax</a>
+        <details><summary>來源與範圍</summary><p>S04 pp. 29–31 · Course Material<br>S08 pp. 3–5 · Research Paper<br>S09 book pp. 179–184 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section transformer-section" id="s7" data-slide data-stage="transformer" data-title="Transformer zoom" aria-labelledby="s7-title">
+      <div class="story-heading">
+        <h2 id="s7-title">Attention 位於哪一層？</h2>
+        <p class="problem">一次 attention 運算，只是 Transformer 架構中的其中一個觀察尺度。</p>
+      </div>
+      <div class="transformer-lab" id="transformer-zoom" data-mechanism-ui>
+        <div class="zoom-controls" role="group" aria-label="Transformer 觀察尺度">
+          <button type="button" data-zoom="attention" aria-pressed="true">Self-Attention（自注意力）</button>
+          <button type="button" data-zoom="block">Transformer 區塊</button>
+          <button type="button" data-zoom="stack">多個區塊</button>
+          <button type="button" data-zoom="model">完整 Transformer</button>
+        </div>
+        <div class="position-orientation"><strong>輸入端</strong><span>Token Embedding + Positional Information</span><span>→ Transformer</span><small>位置資訊在輸入表示中結合；這裡不把它畫成每個 block 都重複的一層。</small></div>
+        <div class="zoom-stage" data-zoom-stage="attention" aria-live="polite">
+          <div class="zoom-view" data-zoom-view="attention">
+            <div class="attention-object"><strong>Self-Attention</strong><span>Q/K scores → weights → combine V</span></div><p>先看一個 Self-Attention 機制。</p>
+          </div>
+          <div class="zoom-view" data-zoom-view="block">
+            <div class="block-object"><div class="attention-object is-highlighted"><strong>Self-Attention</strong><span>你剛看過的部分</span></div><div>Feed-forward</div><div>Residual + Normalization</div></div><p>Self-Attention 是 Transformer block 的一部分，不是整個 block。</p>
+          </div>
+          <div class="zoom-view" data-zoom-view="stack">
+            <div class="stack-object"><div class="block-mini is-highlighted"><b>Block 1</b><span>Self-Attention 在內</span></div><div class="block-mini"><b>Block 2</b></div><div class="block-mini"><b>Block …</b></div></div><p>Transformer 會堆疊多個 block；被標出的 block 仍保留剛才的 Self-Attention。</p>
+          </div>
+          <div class="zoom-view" data-zoom-view="model">
+            <div class="model-object"><strong>Transformer model</strong><div class="stack-object"><div class="block-mini is-highlighted"><b>Block 1</b><span class="attention-pin">Self-Attention 在這裡</span></div><div class="block-mini"><b>Block 2</b></div><div class="block-mini"><b>Block …</b></div></div></div><p>完整模型包含 block stack；Self-Attention 位於每個相關 block 內。</p>
+          </div>
+        </div>
+        <p class="scope-note">S08 保留原始 encoder–decoder 範圍；S09 說明 causal decoder 範圍。這是架構與演進範圍的差異。</p>
+      </div>
+      <p class="bridge">Transformer 已處理 Context（上下文）。它接下來要預測什麼？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/multi-head-attention.md">Multi-Head Attention（多頭注意力）</a>
+        <a href="../../../wiki/concepts/transformer.md">Transformer</a>
+        <a href="../../../wiki/concepts/positional-encoding.md">Positional Encoding（位置編碼）</a>
+        <details><summary>來源與範圍</summary><p>S04 · Course Material<br>S08 pp. 1–6 · Research Paper<br>S09 book pp. 177–195 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section prediction-section" id="s8" data-slide data-stage="prediction" data-title="What the model predicts" aria-labelledby="s8-title">
+      <div class="story-heading">
+        <h2 id="s8-title">模型真正預測什麼？</h2>
+        <p class="problem">處理過的 Context（上下文），現在要轉成各個候選 next token 的 scores（分數）。</p>
+      </div>
+      <div class="prediction-lab" data-ui>
+        <div class="progression-row" aria-label="教學進程">
+          <div><strong>Language Modeling（語言建模）</strong><span>為候選 next tokens 計分</span></div>
+          <div><strong>Large Language Model（大型語言模型）</strong><span>擴大模型與訓練生命週期的框架</span></div>
+          <div><strong>Inference（推論）</strong><span>使用已訓練參數，不在此時更新</span></div>
+        </div>
+        <div class="prediction-machine">
+          <div class="sentence sentence-compact"><span>The</span><span>cat</span><span>…</span><span>it</span><span>was</span></div>
+          <div class="model-gate">Transformer 的 Context</div>
+          <div class="score-output" aria-label="候選 token 分數示意">
+            <div><span>token A</span><i style="--score:.86"></i></div>
+            <div><span>token B</span><i style="--score:.54"></i></div>
+            <div><span>token C</span><i style="--score:.19"></i></div>
+          </div>
+        </div>
+        <p class="scope-note">教學進程是 Language Modeling → LLM → Inference；已發布 Wiki 仍保留每段關係的各自範圍。</p>
+      </div>
+      <p class="bridge">模型已產生 scores（分數）。這些分數代表什麼？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/language-model.md">Language Model（語言模型）</a>
+        <a href="../../../wiki/concepts/large-language-model.md">Large Language Model（大型語言模型）</a>
+        <a href="../../../wiki/concepts/inference.md">Inference（推論）</a>
+        <a href="../../../wiki/concepts/transformer.md">Transformer</a>
+        <details><summary>來源與範圍</summary><p>S04 · Course Material<br>S08 · Research Paper<br>S09 book pp. 5–24, 177–223 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section softmax-section" id="s9" data-slide data-stage="softmax" data-title="Scores to probabilities" aria-labelledby="s9-title">
+      <div class="story-heading">
+        <h2 id="s9-title">分數怎麼變成機率？</h2>
+        <p class="problem">原始 scores（分數）還不是用來選擇 token 的 probability distribution（機率分布）。</p>
+      </div>
+      <div class="softmax-lab" id="softmax-lab" data-ui>
+        <div class="prediction-prompt">
+          <p>先預測 Softmax 會做什麼。</p>
+          <div role="group" aria-label="Softmax 功能預測">
+            <button type="button" data-softmax-prediction="normalize">建立機率分布</button>
+            <button type="button" data-softmax-prediction="choose">直接選出 token</button>
+            <button type="button" data-softmax-prediction="train">更新模型權重</button>
+          </div>
+          <p id="softmax-feedback" aria-live="polite">選一個答案，再展開轉換過程。</p>
+        </div>
+        <button class="mechanism-action motif-button" id="softmax-reveal" type="button">執行 Softmax</button>
+        <div class="softmax-transform">
+          <div class="score-column"><strong>Scores（分數）</strong><span>A</span><span>B</span><span>C</span></div>
+          <div class="softmax-process">Softmax</div>
+          <div class="probability-column">
+            <strong>Probability Distribution（機率分布）</strong>
+            <div><span>A · 0.70</span><i style="--prob:.70"></i></div>
+            <div><span>B · 0.29</span><i style="--prob:.29"></i></div>
+            <div><span>C · 0.01</span><i style="--prob:.01"></i></div>
+            <p>總和 = 1</p>
+          </div>
+        </div>
+        <p class="key-distinction">Softmax 建立 probability distribution（機率分布），但不負責選出最後的 token。</p>
+      </div>
+      <p class="bridge">某個 token 的機率最高，模型就一定要選它嗎？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/softmax.md">Softmax</a>
+        <a href="../../../wiki/concepts/distribution.md">Distribution（分布）</a>
+        <a href="../../../wiki/concepts/language-model.md">Language Model（語言模型）</a>
+        <details><summary>來源與範圍</summary><p>S02–S06 · Course Material<br>S08 · Research Paper<br>S09 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section sampling-section" id="s10" data-slide data-stage="sampling" data-title="Selecting a token" aria-labelledby="s10-title">
+      <div class="story-heading">
+        <h2 id="s10-title">怎麼選出一個 token？</h2>
+        <p class="problem">現在有了機率。接下來需要一個 decoding（解碼）選擇，把分布轉成一個實際 token。</p>
+      </div>
+      <div class="sampling-lab" data-ui>
+        <div class="sampling-choice">
+          <p>你預期會怎麼選？</p>
+          <button type="button" data-decoding-choice="argmax">永遠選最高機率</button>
+          <button type="button" data-decoding-choice="sample">從分布中 Sampling（取樣）</button>
+          <p id="decoding-feedback" aria-live="polite">先比較兩種做法，再實際抽取。</p>
+        </div>
+        <div class="sampling-distribution" aria-label="Sampling distribution [0.70, 0.29, 0.01]">
+          <div><span>A</span><i style="--prob:.70"></i><b>0.70</b></div>
+          <div><span>B</span><i style="--prob:.29"></i><b>0.29</b></div>
+          <div><span>C</span><i style="--prob:.01"></i><b>0.01</b></div>
+        </div>
+        <div class="sampling-actions">
+          <button class="motif-button" type="button" id="sample-again">抽取 1 次</button>
+          <button class="motif-button" type="button" id="sample-ten">抽取 10 次</button>
+        </div>
+        <div class="sample-result" aria-live="polite"><span>最新選出的 token</span><strong id="sample-result">—</strong></div>
+        <div class="sample-tally" aria-label="Sampling 取樣次數"><span>A <b id="count-a">0</b></span><span>B <b id="count-b">0</b></span><span>C <b id="count-c">0</b></span></div>
+        <p class="scope-note">重複抽取使用 Wiki 支持的 `[0.70, 0.29, 0.01]` 分布。Sampling（取樣）控制如何從預測分布中選出 token。</p>
+      </div>
+      <p class="bridge">一個 token 已經選出來了。生成結束了嗎？</p>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/sampling.md">Sampling（取樣）</a>
+        <a href="../../../wiki/concepts/softmax.md">Softmax</a>
+        <a href="../../../wiki/concepts/inference.md">Inference（推論）</a>
+        <details><summary>來源與範圍</summary><p>S03/S04 pp. 53–64, 93–96 · Course Material<br>S09 book pp. 196–201 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="slide story-section repeat-section" id="s11" data-slide data-stage="repeat" data-title="Complete the loop" aria-labelledby="s11-title">
+      <div class="story-heading">
+        <h2 id="s11-title">選完之後發生什麼？</h2>
+        <p class="problem">選出的 token 會成為 Context（上下文）的一部分，讓整條流程再次運行。</p>
+      </div>
+      <div class="repeat-lab" data-mechanism-ui>
+        <div class="loop-sentence" id="loop-sentence">
+          <span>The</span><span>cat</span><span>sat</span><span>on</span><span>the</span><span>mat</span><span>because</span><span>it</span><span>was</span><span class="token-hole" id="loop-hole">[ ? ]</span><span class="loop-selected" id="loop-selected" aria-live="polite"></span>
+        </div>
+        <div class="loop-flow" id="loop-flow">
+          <div data-loop-stage="prediction"><strong>Prediction</strong><span>候選 token scores</span></div>
+          <div data-loop-stage="probability"><strong>Softmax / Probability</strong><span>形成機率分布</span></div>
+          <div data-loop-stage="selection"><strong>Sampling / Selection</strong><span>此時才選出 <b id="loop-choice">—</b></span></div>
+          <div data-loop-stage="append"><strong>Append</strong><span>把選出的 token 加入 Context</span></div>
+          <div data-loop-stage="next"><strong>Next Context</strong><span>更新後的文字成為下一輪輸入</span></div>
+        </div>
+        <div class="loop-transit" id="loop-transit" aria-hidden="true"></div>
+        <button class="primary-action motif-button" id="run-loop" type="button">運行一次循環</button>
+        <p id="loop-feedback" aria-live="polite">初始狀態只有 Context（上下文）與空位；尚未選出任何 token。</p>
+        <p class="checkpoint-fallback">靜態順序：Prediction → Softmax / probability → Sampling / selection → selected token → append to Context → repeat。</p>
+      </div>
+      <div class="factuality-boundary">
+        <div><h3>Selection（選擇）</h3><p>Sampling（取樣）控制如何從預測分布中選出 token。</p></div>
+        <div><h3>Factual Grounding（事實依據）</h3><p>流暢或高機率的續寫，不保證內容有事實依據或正確。這裡不把 Sampling 教成 Hallucination（幻覺）的原因。</p></div>
+      </div>
+      <p class="bridge bridge-final">你已跟著一個 token 走完整個循環。現在能不能自己重建這條路徑？</p>
+      <a class="primary-action motif-button quiz-action" href="#quiz">開始六題理解檢查</a>
+      <footer class="evidence">
+        <span>對應 Wiki 概念</span>
+        <a href="../../../wiki/concepts/language-model.md">Language Model（語言模型）</a>
+        <a href="../../../wiki/concepts/inference.md">Inference（推論）</a>
+        <a href="../../../wiki/concepts/sampling.md">Sampling（取樣）</a>
+        <a href="../../../wiki/concepts/hallucination.md">Hallucination（幻覺）</a>
+        <a href="../../../wiki/concepts/llm-evaluation.md">LLM Evaluation（LLM 評估）</a>
+        <details><summary>來源與範圍</summary><p>S03/S04 · Course Material<br>S09 book pp. 29–31, 196–201 · Reliable Educational Reference</p></details>
+      </footer>
+    </section>
+
+    <section class="quiz-experience" id="quiz" aria-labelledby="quiz-title">
+      <div class="quiz-intro">
+        <h2 id="quiz-title">你能重建這個循環嗎？</h2>
+        <p>六道題目會檢查順序、機制、情境轉移，以及事實依據的界線。</p>
+      </div>
+      <div class="quiz-app" id="quiz-app" data-ui aria-live="polite">
+        <div class="quiz-progress"><span id="quiz-count">第 1 / 6 題</span><div aria-hidden="true"><i id="quiz-progress-bar"></i></div></div>
+        <h3 id="quiz-question">正在載入題目…</h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <button class="motif-button" id="quiz-submit" type="button">提交答案</button>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="motif-button" id="quiz-next" type="button" hidden>下一題</button>
+      </div>
+
+      <div class="quiz-list quiz-fallback">
+        <p><strong>沒有 JavaScript 時：</strong>下方仍保留全部六題與有依據的答案。</p>
+        <details><summary>從文字到選出 next token 的因果順序是什麼？</summary><p>文字 → Tokenization（詞元化）→ 表示 + 位置 → 上下文處理 → scores → Softmax 機率分布 → Sampling（取樣）→ 加入並重複。</p></details>
+        <details><summary>Q、K、V 如何分工？</summary><p>Query 與 Keys 比較；正規化權重決定如何組合 Values。</p></details>
+        <details><summary>Softmax 與 Sampling 有什麼差別？</summary><p>Softmax 建立機率分布；Sampling 從分布中選出一個 token。</p></details>
+        <details><summary>token C 能從 `[0.70, 0.29, 0.01]` 中被選到嗎？</summary><p>可以。它的機率很低，但不是零。</p></details>
+        <details><summary>前面的 context token 改變時，後面哪些部分可能改變？</summary><p>上下文表示、候選 scores、Softmax 機率，以及最後選出的結果都可能改變。</p></details>
+        <details><summary>流暢輸出能保證有事實依據嗎？</summary><p>不能。流暢或高機率的續寫仍可能缺乏依據或不正確。</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <strong>一個 token，一次完整循環。</strong>
+    <p>知識來源只使用已發布的 Week 10 Wiki；不推論或改變任何 mastery 狀態。</p>
+    <div class="footer-actions"><a href="../index.html">返回 AI Knowledge Lab</a><a href="../../../wiki/README.md">開啟 Week 10 Wiki 索引</a></div>
+  </footer>
+</body>
+</html>

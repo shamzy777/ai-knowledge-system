@@ -1,1 +1,11 @@
 .DS_Store
+
+# Week 10 local-only source originals and transient extraction/render files.
+# Public provenance remains in week10-llm-wiki/sources/manifests/ and logs/.
+week10-llm-wiki/sources/inbox/*
+!week10-llm-wiki/sources/inbox/README.md
+week10-llm-wiki/tmp/
+week10-llm-wiki/work/
+week10-llm-wiki/outputs/
+week10-llm-wiki/.taste-skill/
+week10-llm-wiki/**/__pycache__/

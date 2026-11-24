@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI Knowledge Lab 是以互動與視覺化建立 AI mental model 的學習空間。">
+  <title>AI Knowledge Lab｜互動式 AI 學習空間</title>
+  <link rel="stylesheet" href="hub.css">
+  <script>document.documentElement.className = 'js';</script>
+  <script src="topics.js" defer></script>
+  <script src="hub.js" defer></script>
+</head>
+<body class="hub-page">
+  <a class="skip-link" href="#topics">跳到學習主題</a>
+
+  <header class="hub-nav" aria-label="主要導覽">
+    <a class="hub-wordmark" href="index.html">AI Knowledge Lab</a>
+    <nav aria-label="頁面導覽">
+      <a href="#about">學習方式</a>
+      <a href="#topics">主題</a>
+      <a class="hub-nav-action" href="topics/next-token.html">開始學習</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hub-hero" id="about" aria-labelledby="hub-title">
+      <div class="hub-hero-copy">
+        <h1 id="hub-title"><span>AI Knowledge</span><span>Lab</span></h1>
+        <p class="hub-promise">用互動與視覺化，一步一步建立 AI 的 mental model。</p>
+        <p class="hub-explainer">每個主題只拆解一個關鍵問題。你會看見機制、親手操作，再用小測驗確認自己能不能說明。</p>
+        <a class="hub-primary motif-button" href="#topics">選擇學習主題</a>
+      </div>
+
+      <div class="hub-live" data-ui aria-label="互動式學習流程示意">
+        <p>從一個問題開始</p>
+        <button type="button" class="hub-question" id="hub-question" aria-expanded="false">文字如何變成下一個 token？</button>
+        <div class="hub-mechanism" id="hub-mechanism" aria-live="polite">
+          <span data-step="token">文字</span>
+          <span data-step="representation">表示</span>
+          <span data-step="attention">關聯</span>
+          <span data-step="probability">機率</span>
+          <span data-step="selection">選擇</span>
+        </div>
+        <p class="hub-live-status" id="hub-live-status">點一下問題，看看一個 mental model 如何展開。</p>
+      </div>
+    </section>
+
+    <section class="topics-section" id="topics" aria-labelledby="topics-title">
+      <div class="topics-heading">
+        <h2 id="topics-title">從一個問題開始</h2>
+        <p>不是背術語，而是把一個看不見的機制走完。</p>
+      </div>
+
+      <div class="topic-list" id="topic-list" aria-live="polite"></div>
+
+      <noscript>
+        <article class="topic-card topic-card-fallback">
+          <div class="topic-card-copy">
+            <p class="topic-number">Topic 01</p>
+            <h3>LLM 是怎麼產生下一個 token 的？</h3>
+            <p>跟著同一段文字走過 Tokenization（詞元化）、Embedding（嵌入表示）、Self-Attention（自注意力）、Transformer、Softmax 與 Sampling（取樣）。</p>
+            <a class="hub-primary motif-button" href="topics/next-token.html">開始學習</a>
+          </div>
+          <dl class="topic-meta">
+            <div><dt>難度</dt><dd>初階</dd></div>
+            <div><dt>時間</dt><dd>約 10–15 分鐘</dd></div>
+            <div><dt>形式</dt><dd>互動式</dd></div>
+            <div><dt>內容</dt><dd>11 個學習段落</dd></div>
+          </dl>
+        </article>
+      </noscript>
+    </section>
+
+    <section class="future-section" aria-labelledby="future-title">
+      <h2 id="future-title">更多主題持續加入中</h2>
+      <p>Learning Hub 已能依照主題 registry 自動加入新模組；目前只公開已完成驗證的 Topic 01。</p>
+    </section>
+  </main>
+
+  <footer class="hub-footer">
+    <strong>把機制看懂，再把概念連起來。</strong>
+    <p>Week 10 LLM Wiki 的隔離式教學實驗。尚未公開部署。</p>
+  </footer>
+</body>
+</html>

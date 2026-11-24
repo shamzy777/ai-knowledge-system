@@ -1,0 +1,38 @@
+source_id: S09
+run_id: RUN-004
+title: "Speech and Language Processing: An Introduction to Natural Language Processing, Computational Linguistics, and Speech Recognition with Language Models"
+edition: "Third Edition draft"
+authors:
+  - Daniel Jurafsky
+  - James H. Martin
+source_type: Reliable Educational Reference
+publication:
+  release_date: "2026-08-19"
+  landing_url: "https://web.stanford.edu/~jurafsky/slp3/"
+  pdf_url: "https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf"
+local_copy:
+  path: "sources/inbox/S09__Speech and Language Processing 3e 2026.pdf"
+  size_bytes: 26506144
+  sha256: "88d0362c3bcb62a0cd09403fb80fd15e778dd53566943912ab1047cda3ff5c79"
+pdf:
+  page_count: 646
+  producer: "pdfTeX-1.40.29"
+  creation_date: "2026-08-20T09:50:11+08:00"
+  encrypted: false
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  claims: "staging/ingests/RUN-004-S09-claims.md"
+  targeted_book_pages: "5-21, 33-47, 68-88, 127-175, 177-224"
+verification:
+  official_locator_verified: true
+  full_pdf_download_verified: true
+  rendered_book_pages_checked: [42, 177, 184, 193, 201, 209]
+  rendered_physical_pages_checked: [50, 185, 192, 201, 209, 217]
+  notes:
+    - "Book page labels, not raw PDF physical indices, are used as locators."
+    - "The source is a dated online manuscript; time-sensitive current-model examples are not promoted into stable canonical claims."
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false

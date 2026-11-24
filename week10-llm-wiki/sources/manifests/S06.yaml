@@ -1,0 +1,34 @@
+source_id: S06
+run_id: RUN-003
+title: "07 Implementation of Neural Networks.pdf"
+source_type: Course Material
+language: "Traditional Chinese and English"
+drive:
+  file_id: "1m0Up92dVKIi4tqrtkZjgALPIvv56-tNZ"
+  url: "https://drive.google.com/file/d/1m0Up92dVKIi4tqrtkZjgALPIvv56-tNZ/view?usp=drivesdk"
+  mime_type: "application/pdf"
+  size_bytes: 6417628
+  created_at: "2026-10-13T05:15:46.156Z"
+  modified_at: "2026-10-13T05:15:10.000Z"
+  parent_folder_id: "1gvYVhkDlvB3EfeGf4Fjc99qXFr2MlskD"
+local_copy:
+  path: "sources/inbox/S06__07 Implementation of Neural Networks.pdf"
+  sha256: "0e9fd245a470cdcbd92441c68ae566bf7d44a910a0f2a0e970af08da0b8cb8fe"
+pdf:
+  page_count: 89
+  title_metadata: "Microsoft PowerPoint - 07 Implementation of Neural Networks.pptx"
+  author: "cnchi"
+  encrypted: false
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  claims: "staging/ingests/RUN-003-S06-claims.md"
+verification:
+  drive_metadata_verified: true
+  full_pdf_download_verified: true
+  rendered_pages_checked: [18, 20]
+  notes: "Text extraction covered all slides; selected training-curve slides were visually checked."
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false

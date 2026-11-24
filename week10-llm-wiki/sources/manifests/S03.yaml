@@ -1,0 +1,46 @@
+source_id: S03
+run_id: RUN-002
+title: "Copy of 03AI為什麼每次都不一樣？.pdf"
+source_type: Course Material
+course: "TAICA 生成式 AI"
+topic: "AI為什麼每次都不一樣？"
+language: "Traditional Chinese with English technical terms"
+drive:
+  file_id: "1MpZP76_KNYfTGth9q9JKDFh-KsRUHDGP"
+  url: "https://drive.google.com/file/d/1MpZP76_KNYfTGth9q9JKDFh-KsRUHDGP/view?usp=drivesdk"
+  mime_type: "application/pdf"
+  size_bytes: 64720520
+  created_at: "2026-09-29T09:39:14.718Z"
+  modified_at: "2026-09-29T09:39:14.718Z"
+  parent_folder_id: "1hI0miNwIGLtB1oPFJcbbASL4NsZ4Wp2j"
+local_copy:
+  path: "sources/inbox/S03__Copy of 03AI為什麼每次都不一樣？.pdf"
+  sha256: "07c9ce92fde094f6f681b105a88be2fb379df9d361f38fade62eb67bf97cfd36"
+pdf:
+  page_count: 102
+  title_metadata: "03AI為什麼每次都不一樣？"
+  creator: "Keynote"
+  producer: "macOS 版本26.5（版號25F71） Quartz PDFContext"
+  creation_date: "2026-09-22T08:44:31+08:00"
+  encrypted: false
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  extracted_claims: "staging/ingests/RUN-002-S03-claims.md"
+  canonical_decisions: "staging/ingests/RUN-002-S03-canonical-decisions.md"
+  conflicts: "staging/ingests/RUN-002-S03-conflicts.md"
+  relationships: "staging/relationships/RUN-002-S03-relationship-proposals.md"
+  semantic_review: "staging/relationships/RUN-002-S03-semantic-review.md"
+verification:
+  drive_metadata_verified: true
+  full_pdf_download_verified: true
+  rendered_pages_checked: [30, 77, 84, 85, 93, 94, 95, 96, 97, 98]
+  notes:
+    - "Connector text extraction was checked against rendered source pages for formulas and late-deck sampling/generative framing."
+    - "Poppler reported missing Adobe-Japan1/font-tag warnings, but the inspected slide text and diagrams remained readable."
+    - "S03 does not teach temperature, top-k, or top-p; it does not update Sampling Strategies content."
+    - "The p. 98 hallucination statement is recorded as a course perspective, not a standalone definition."
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false

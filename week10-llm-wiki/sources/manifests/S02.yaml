@@ -1,0 +1,33 @@
+source_id: S02
+run_id: RUN-003
+title: "02神經網路的概念.pdf"
+source_type: Course Material
+language: "Traditional Chinese with English technical terms"
+drive:
+  file_id: "15wzeEhfpLPqpKxSiZj5Io3Y3nuPpEnzW"
+  url: "https://drive.google.com/file/d/15wzeEhfpLPqpKxSiZj5Io3Y3nuPpEnzW/view?usp=drivesdk"
+  mime_type: "application/pdf"
+  size_bytes: 90486096
+  created_at: "2026-09-24T06:34:26.646Z"
+  modified_at: "2026-09-20T07:22:54.000Z"
+  parent_folder_id: "1hI0miNwIGLtB1oPFJcbbASL4NsZ4Wp2j"
+local_copy:
+  path: "sources/inbox/S02__02神經網路的概念.pdf"
+  sha256: "2e57f2fe14f540e3280d82f762d3ddf8d06d5d8c99e468ff5175bf8ff50e530c"
+pdf:
+  page_count: 123
+  title_metadata: "02神經網路的概念"
+  creator: "Keynote"
+  encrypted: false
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  claims: "staging/ingests/RUN-003-S02-claims.md"
+verification:
+  drive_metadata_verified: true
+  full_pdf_download_verified: true
+  rendered_pages_checked: [15, 36, 63, 71, 75, 103, 118, 120, 121]
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false

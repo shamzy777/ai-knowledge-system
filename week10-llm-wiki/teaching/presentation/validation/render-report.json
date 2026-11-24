@@ -1,0 +1,260 @@
+{
+  "at": "2026-11-24T16:39:20.639Z",
+  "urls": {
+    "hub": "file:///Users/shamzylee/Documents/Obsidian%20Vault/Ai%20knowledge%20system/week09-prototype/week10-llm-wiki/teaching/presentation/index.html",
+    "topic": "file:///Users/shamzylee/Documents/Obsidian%20Vault/Ai%20knowledge%20system/week09-prototype/week10-llm-wiki/teaching/presentation/topics/next-token.html"
+  },
+  "architecture": {
+    "title": "AI Knowledge Lab｜互動式 AI 學習空間",
+    "topicCards": 1,
+    "topicHref": "topics/next-token.html",
+    "topicResolved": "file:///Users/shamzylee/Documents/Obsidian%20Vault/Ai%20knowledge%20system/week09-prototype/week10-llm-wiki/teaching/presentation/topics/next-token.html",
+    "futurePlaceholder": true,
+    "topicReturnHome": "../index.html"
+  },
+  "hubViewports": [
+    {
+      "width": 375,
+      "height": 812,
+      "pageType": "hub",
+      "innerWidth": 377,
+      "scrollWidth": 377,
+      "horizontalOffenders": [],
+      "bodyHeight": 3027,
+      "h1Count": 1,
+      "topicCards": 1,
+      "slideCount": 0,
+      "evidenceCount": 0,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/hub-375.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "pageType": "hub",
+      "innerWidth": 768,
+      "scrollWidth": 768,
+      "horizontalOffenders": [],
+      "bodyHeight": 3090,
+      "h1Count": 1,
+      "topicCards": 1,
+      "slideCount": 0,
+      "evidenceCount": 0,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/hub-768.png"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "pageType": "hub",
+      "innerWidth": 1280,
+      "scrollWidth": 1280,
+      "horizontalOffenders": [],
+      "bodyHeight": 2663,
+      "h1Count": 1,
+      "topicCards": 1,
+      "slideCount": 0,
+      "evidenceCount": 0,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/hub-1280.png"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "pageType": "hub",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "horizontalOffenders": [],
+      "bodyHeight": 2909,
+      "h1Count": 1,
+      "topicCards": 1,
+      "slideCount": 0,
+      "evidenceCount": 0,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/hub-1440.png"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "pageType": "hub",
+      "innerWidth": 1920,
+      "scrollWidth": 1920,
+      "horizontalOffenders": [],
+      "bodyHeight": 3378,
+      "h1Count": 1,
+      "topicCards": 1,
+      "slideCount": 0,
+      "evidenceCount": 0,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/hub-1920.png"
+    }
+  ],
+  "topicViewports": [
+    {
+      "width": 375,
+      "height": 812,
+      "pageType": "topic",
+      "innerWidth": 375,
+      "scrollWidth": 375,
+      "horizontalOffenders": [],
+      "bodyHeight": 19810,
+      "h1Count": 1,
+      "topicCards": 0,
+      "slideCount": 11,
+      "evidenceCount": 11,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/topic-375.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "pageType": "topic",
+      "innerWidth": 768,
+      "scrollWidth": 768,
+      "horizontalOffenders": [],
+      "bodyHeight": 16243,
+      "h1Count": 1,
+      "topicCards": 0,
+      "slideCount": 11,
+      "evidenceCount": 11,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/topic-768.png"
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "pageType": "topic",
+      "innerWidth": 1280,
+      "scrollWidth": 1280,
+      "horizontalOffenders": [],
+      "bodyHeight": 16408,
+      "h1Count": 1,
+      "topicCards": 0,
+      "slideCount": 11,
+      "evidenceCount": 11,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/topic-1280.png"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "pageType": "topic",
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "horizontalOffenders": [],
+      "bodyHeight": 17404,
+      "h1Count": 1,
+      "topicCards": 0,
+      "slideCount": 11,
+      "evidenceCount": 11,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/topic-1440.png"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "pageType": "topic",
+      "innerWidth": 1920,
+      "scrollWidth": 1920,
+      "horizontalOffenders": [],
+      "bodyHeight": 18983,
+      "h1Count": 1,
+      "topicCards": 0,
+      "slideCount": 11,
+      "evidenceCount": 11,
+      "documentLanguage": "zh-Hant",
+      "consoleErrors": [],
+      "screenshot": "/Users/shamzylee/Documents/Obsidian Vault/Ai knowledge system/week09-prototype/week10-llm-wiki/teaching/presentation/validation/screenshots/topic-1920.png"
+    }
+  ],
+  "interactions": {
+    "hub": {
+      "expanded": "true",
+      "open": true,
+      "status": "問題被拆成可以逐步觀察、操作與驗證的機制。"
+    },
+    "keyboardProgress": "第 2 / 11 段",
+    "pipeline": {
+      "href": "#s9",
+      "hash": "#s9",
+      "targetExists": true
+    },
+    "embedding": {
+      "step": "4",
+      "revealed": 4,
+      "positionVisible": true,
+      "checkpoint": "正確。你已抓到這個輸入 → 處理 → 輸出的關係。"
+    },
+    "qkv": {
+      "step": "5",
+      "revealed": 5,
+      "distinction": "Q + K決定相關程度V承載要組合的資訊",
+      "checkpoint": "正確。你已抓到這個輸入 → 處理 → 輸出的關係。"
+    },
+    "attention": {
+      "step": "6",
+      "revealed": 6,
+      "after": "After Self-Attention更新後的 contextual representation已由可見位置的資訊加權組合而成。",
+      "checkpoint": "正確。你已抓到這個輸入 → 處理 → 輸出的關係。"
+    },
+    "transformerZoom": {
+      "stage": "model",
+      "visible": 1,
+      "text": "\n            Transformer modelBlock 1Self-Attention 在這裡Block 2Block …完整模型包含 block stack；Self-Attention 位於每個相關 block 內。\n          "
+    },
+    "sampling": {
+      "result": "B",
+      "total": 1
+    },
+    "samplingTen": 11,
+    "loopInitial": {
+      "selected": "",
+      "holeVisible": true,
+      "choice": "—"
+    },
+    "loopComplete": {
+      "selected": "[ token B ]",
+      "holeHidden": true,
+      "choice": "token B",
+      "completedStages": 5,
+      "button": "再運行一次循環",
+      "feedback": "更新完成：包含 token B 的新 Context 會成為下一輪輸入。"
+    },
+    "quiz": {
+      "feedback": "正確。每個階段都在解決上一個階段留下的問題。",
+      "nextHidden": false
+    }
+  },
+  "noJavaScript": {
+    "hub": {
+      "className": "no-js",
+      "topicFallback": true,
+      "textLength": 536,
+      "scrollWidth": 377,
+      "innerWidth": 377
+    },
+    "topic": {
+      "className": "no-js",
+      "slides": 11,
+      "visibleSlides": 11,
+      "opaqueSlides": 11,
+      "textLength": 6533,
+      "wikiLinks": 31,
+      "quizItems": 6,
+      "fallbackText": true,
+      "scrollWidth": 375,
+      "innerWidth": 375
+    }
+  },
+  "result": "PASS",
+  "failures": []
+}

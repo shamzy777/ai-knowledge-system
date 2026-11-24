@@ -1,0 +1,43 @@
+source_id: S08
+run_id: RUN-004
+title: "Attention Is All You Need"
+source_type: Research Paper
+authors:
+  - Ashish Vaswani
+  - Noam Shazeer
+  - Niki Parmar
+  - Jakob Uszkoreit
+  - Llion Jones
+  - Aidan N. Gomez
+  - Lukasz Kaiser
+  - Illia Polosukhin
+publication:
+  venue: "31st Conference on Neural Information Processing Systems (NIPS 2017)"
+  original_year: 2017
+  arxiv_id: "1706.03762"
+  version: "v7"
+  version_date: "2023-08-02"
+  landing_url: "https://arxiv.org/abs/1706.03762"
+  pdf_url: "https://arxiv.org/pdf/1706.03762"
+local_copy:
+  path: "sources/inbox/S08__Attention Is All You Need.pdf"
+  size_bytes: 2215244
+  sha256: "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697"
+pdf:
+  page_count: 15
+  producer: "pdfTeX-1.40.25"
+  encrypted: false
+ingest:
+  authorized: true
+  count_toward_5_plus: true
+  status: "validated-staging"
+  claims: "staging/ingests/RUN-004-S08-claims.md"
+verification:
+  official_locator_verified: true
+  full_pdf_download_verified: true
+  rendered_pages_checked: [3, 4, 5, 6]
+  notes:
+    - "Primary evidence is limited to the original encoder-decoder Transformer described by the paper; later decoder-only LLM conventions are not attributed to S08."
+isolation:
+  permanent_ai_knowledge_system_modified: false
+  publication_authorized: false
